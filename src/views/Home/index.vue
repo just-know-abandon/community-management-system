@@ -1,14 +1,22 @@
+<!-- 首页 -->
 <template>
   <div class="home">
-    123
+    <router-view />
+    <div class="tabBar">
+      <TabBar />
+    </div>
   </div>
 </template>
 
 <script>
+import TabBar from '../../components/TabBar'
 export default {
   name: 'Home',
   components: {
-    // HelloWorld
+    TabBar
   }
 }
 </script>
+
+<style lang="less" scoped>
+</style>
