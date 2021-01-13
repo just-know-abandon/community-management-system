@@ -1,0 +1,33 @@
+@swiper-h: 212px;
+@swiper-slide-h: 200px;
+@full: 100%;
+@bgc: #eee;
+@br: 20px;
+
+.swiper-container{
+  width: @full;
+  height: @swiper-h;
+  // background-color: @bgc;
+}
+.swipera{
+  width: 100vw;
+  // background-color: @bgc;
+}
+.swiper-slide{
+  width: @full;
+  height: @swiper-slide-h;
+  padding: 6px;
+}
+.swiper-slide-img{
+  width: @full;
+  height: @full;
+  border-radius: @br;
+}
+/* 无缝滚动 */
+.swiper-container /deep/ .swiper-container-free-mode > .swiper-wrapper {
+  -webkit-transition-timing-function: linear !important;
+  -moz-transition-timing-function: linear !important;
+  -ms-transition-timing-function: linear !important;
+  -o-transition-timing-function: linear !important;
+  transition-timing-function: linear !important;
+}
