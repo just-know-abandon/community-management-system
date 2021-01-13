@@ -6,7 +6,7 @@
     </router-link>
     <router-link to="/market" class="tabBar-item">
       <i class="iconfont icon-shouye"></i>
-      <span>市场</span>
+      <span>二手市场</span>
     </router-link>
     <router-link to="/chatRoom" class="tabBar-item">
       <i class="iconfont icon-shouye"></i>

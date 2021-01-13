@@ -11,6 +11,17 @@ import 'amfe-flexible'
 import './assets/css/global.css'
 // 导入iconfont
 import './assets/fonts/iconfont.css'
+// vuescroll
+import vuescroll from 'vuescroll'
+
+// vant按需引入
+import 'vant/lib/index.css'
+import { Button, NoticeBar } from 'vant'
+
+Vue.use(Button)
+Vue.use(NoticeBar)
+
+Vue.use(vuescroll)
 
 // FastClick绑定body
 FastClick.attach(document.body)

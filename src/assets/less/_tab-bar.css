@@ -8,11 +8,11 @@
   /*no*/
   background-color: #fff;
   z-index: 5000;
-  box-shadow: 0 0 10px 0 rgba(155, 150, 150, 0.404);
+  box-shadow: 0 0 10px 0 rgba(150, 150, 150, 0.404);
   /*no*/
 }
 .tabBar-item {
-  color: black;
+  color: #969696;
   flex: 1;
   text-align: center;
   font-size: 12px;
@@ -26,6 +26,5 @@
   display: block;
 }
 .router-link-active {
-  background-color: #ec5f5f;
-  color: #eee;
+  color: #f0a00b;
 }
