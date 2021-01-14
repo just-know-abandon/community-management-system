@@ -12,6 +12,11 @@
     <div class="con">
       <Banner />
       <Nav />
+      <van-divider
+        :style="{ color: 'rgb(240, 160, 11)', borderColor: 'rgb(240, 160, 11)', padding: '0 14px', margin: '10px 0' }"
+      >
+        最新公告
+      </van-divider>
       <News />
     </div>
   </div>

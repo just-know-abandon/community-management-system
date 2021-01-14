@@ -16,10 +16,21 @@ import vuescroll from 'vuescroll'
 
 // vant按需引入
 import 'vant/lib/index.css'
-import { Button, NoticeBar } from 'vant'
+import {
+  Button,
+  NoticeBar,
+  Divider,
+  Dialog,
+  Tab,
+  Tabs
+} from 'vant'
 
 Vue.use(Button)
 Vue.use(NoticeBar)
+Vue.use(Divider)
+Vue.use(Dialog)
+Vue.use(Tab)
+Vue.use(Tabs)
 
 Vue.use(vuescroll)
 
