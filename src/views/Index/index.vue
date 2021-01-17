@@ -41,4 +41,17 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.van-notice-bar{
+  height: 40px; /*no*/
+  font-size: 14px !important; /*no*/
+  line-height: 40px; /*no*/
+}
+.van-notice-bar /deep/ .van-notice-bar__left-icon{
+  font-size: 16px; /*no*/
+  min-width: 24px; /*no*/
+}
+.van-notice-bar /deep/.van-notice-bar__right-icon{
+  font-size: 16px; /*no*/
+  min-width: 24px; /*no*/
+}
 </style>

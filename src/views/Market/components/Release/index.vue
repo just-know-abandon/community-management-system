@@ -9,8 +9,9 @@
         <ul>
           <li>1. 本平台仅提供闲置物品发布不作任何担保</li>
           <li>2. 如需管理人员见证交易，可联系工作人员</li>
-          <li>3. 切勿发布虚假物品，虚假详情</li>
-          <li>4. 如乱发布可能被封号</li>
+          <li>3. 发布商品请前往个人中心</li>
+          <li>4. 切勿发布虚假物品，虚假详情</li>
+          <li>5. 如乱发布可能被封号</li>
         </ul>
       </div>
     </van-dialog>
@@ -236,20 +237,20 @@ export default {
   margin-left: -14px !important;
 }
 .tabs{
-  margin-top: 10px;
+  margin-top: 10px; /*no*/
 }
 .rules{
   font-size: 14px;
-  padding: 24px;
+  padding: 24px; /*no*/
 }
 .release{
   position: relative;
   height: 100px;
 }
 .release-container{
-  width: calc(100vw - 28px);
+  width: calc(100vw - 28px); /*no*/
   height: 100px;
-  padding: 6px 14px;
+  padding: 6px 14px;/*no*/
 }
 .release-img{
   width: 100%;

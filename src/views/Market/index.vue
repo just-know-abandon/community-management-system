@@ -30,9 +30,17 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.asd{
-  width: 100%;
-  height: 500px;
-  // background-color: pink;
+// .asd{
+//   width: 100%;
+//   // height: 500px;
+//   // background-color: pink;
+// }
+.van-notice-bar{
+  font-size: 14px !important; /*no*/
+  height: 40px; /*no*/
+}
+.van-notice-bar /deep/ .van-notice-bar__left-icon{
+  font-size: 16px; /*no*/
+  min-width: 24px; /*no*/
 }
 </style>

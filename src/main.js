@@ -22,7 +22,10 @@ import {
   Divider,
   Dialog,
   Tab,
-  Tabs
+  Tabs,
+  Swipe,
+  SwipeItem,
+  Field
 } from 'vant'
 
 Vue.use(Button)
@@ -31,6 +34,9 @@ Vue.use(Divider)
 Vue.use(Dialog)
 Vue.use(Tab)
 Vue.use(Tabs)
+Vue.use(Swipe)
+Vue.use(SwipeItem)
+Vue.use(Field)
 
 Vue.use(vuescroll)
 
