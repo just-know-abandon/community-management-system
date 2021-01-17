@@ -1,18 +1,33 @@
 <template>
   <div class="share-container">
-    <ShareTitle />
+    <TitleTop>
+      <span slot="left"></span>
+      <span slot="mid">
+        {{title}}
+      </span>
+      <span slot="right">
+        {{btn}}
+      </span>
+    </TitleTop>
     <ShareMain />
   </div>
 </template>
 
 <script>
-import ShareTitle from './components/ShareTitle/index'
+// import ShareTitle from './components/ShareTitle/index'
+import TitleTop from '../../components/TitleTop/index'
 import ShareMain from './components/ShareMain/index'
 export default {
   name: 'Share',
   components: {
-    ShareTitle,
+    TitleTop,
     ShareMain
+  },
+  data () {
+    return {
+      title: '分享墙',
+      btn: '+'
+    }
   }
 }
 </script>

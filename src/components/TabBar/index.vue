@@ -14,7 +14,7 @@
     </router-link>
     <router-link to="/share" class="tabBar-item">
       <i class="iconfont icon-shouye"></i>
-      <span>分享</span>
+      <span>分享墙</span>
     </router-link>
     <router-link to="/personalCenter" class="tabBar-item">
       <i class="iconfont icon-shouye"></i>

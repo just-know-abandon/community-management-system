@@ -1,7 +1,15 @@
 <template>
   <div class="chat-container">
+    <!-- <ShareTitle>
+      <span slot="left"></span>
+      <span slot="mid">
+        聊天室
+      </span>
+      <span slot="ze">
+      </span>
+    </ShareTitle> -->
+    <!-- <i class="iconfont icon-shouye chat-top-i"></i> -->
     <div class="chat-top">
-      <!-- <i class="iconfont icon-shouye chat-top-i"></i> -->
       <span class="chat-top-title">
         聊天室
         <span class="chat-top-online">(在线:10)</span>
@@ -26,6 +34,7 @@
 </template>
 
 <script>
+// import ShareTitle from '../../../Share/components/ShareTitle/index'
 export default {
   name: 'Chat',
   data () {
@@ -33,6 +42,9 @@ export default {
       message: ''
     }
   }
+  // components: {
+  //   ShareTitle
+  // }
 }
 </script>
 
