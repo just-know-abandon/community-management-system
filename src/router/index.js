@@ -34,6 +34,56 @@ const routes = [
         path: '/personalCenter',
         name: 'PersonalCenter',
         component: () => import('../views/PersonalCenter/index.vue')
+      },
+      {
+        path: '/index/notice',
+        name: 'Notice',
+        component: () => import('../views/Index/components/Nav/components/Notice/index.vue')
+      },
+      {
+        path: '/index/communityActivity',
+        name: 'CommunityActivity',
+        component: () => import('../views/Index/components/Nav/components/CommunityActivity/index.vue')
+      },
+      {
+        path: '/index/organizingActivity',
+        name: 'OrganizingActivity',
+        component: () => import('../views/Index/components/Nav/components/OrganizingActivity/index.vue')
+      },
+      {
+        path: '/index/services',
+        name: 'PayNotice',
+        component: () => import('../views/Index/components/Nav/components/Services/index.vue')
+      },
+      {
+        path: '/index/communityScenery',
+        name: 'CommunityScenery',
+        component: () => import('../views/Index/components/Nav/components/CommunityScenery/index.vue')
+      },
+      {
+        path: '/index/visitor',
+        name: 'Visitor',
+        component: () => import('../views/Index/components/Nav/components/Visitor/index.vue')
+      },
+      {
+        path: '/index/reportRepair',
+        name: 'ReportRepair',
+        component: () => import('../views/Index/components/Nav/components/ReportRepair/index.vue')
+      },
+      {
+        path: '/index/reportLoss',
+        name: 'ReportLoss',
+        component: () => import('../views/Index/components/Nav/components/ReportLoss/index.vue')
+      },
+      {
+        path: '/index/complaintsComplaint',
+        name: 'ComplaintsComplaint',
+        component: () => import('../views/Index/components/Nav/components/ComplaintsComplaint/index.vue')
+      },
+      {
+        path: '/index/contact',
+        name: 'Contact',
+        component: () => import('../views/Index/components/Nav/components/Contact/index.vue')
       }
     ]
   },

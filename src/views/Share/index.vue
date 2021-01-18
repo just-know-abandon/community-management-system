@@ -5,7 +5,7 @@
       <span slot="mid">
         {{title}}
       </span>
-      <span slot="right">
+      <span slot="rightShare">
         {{btn}}
       </span>
     </TitleTop>
@@ -26,7 +26,8 @@ export default {
   data () {
     return {
       title: '分享墙',
-      btn: '+'
+      btn: '+',
+      left: '<'
     }
   }
 }

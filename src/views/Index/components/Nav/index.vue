@@ -20,54 +20,54 @@ export default {
     return {
       navItems: [
         {
-          linkUrl: 'https://www.imooc.com',
+          linkUrl: '/index/notice',
           picUrl: 'iconfont icon-shouye',
           text: '通知公告'
         },
         {
-          linkUrl: 'https://www.imooc.com',
+          linkUrl: '/index/communityActivity',
           picUrl: 'iconfont icon-shouye',
           text: '小区活动'
         },
         {
-          linkUrl: 'https://www.imooc.com',
+          linkUrl: '/index/organizingActivity',
           picUrl: 'iconfont icon-shouye',
-          text: '自发活动'
+          text: '组织活动'
         },
         {
-          linkUrl: 'https://www.imooc.com',
+          linkUrl: '/index/services',
           picUrl: 'iconfont icon-shouye',
-          text: '缴费通知'
+          text: '物业服务'
         },
         {
-          linkUrl: 'https://www.imooc.com',
+          linkUrl: '/index/communityScenery',
           picUrl: 'iconfont icon-shouye',
           text: '小区风光'
         },
         {
-          linkUrl: 'https://www.imooc.com',
+          linkUrl: '/index/visitor',
           picUrl: 'iconfont icon-shouye',
-          text: '访客通道'
+          text: '访客通报'
         },
         {
-          linkUrl: 'https://www.imooc.com',
+          linkUrl: '/index/reportRepair',
           picUrl: 'iconfont icon-shouye',
-          text: '报修报事'
+          text: '损坏报修'
         },
         {
-          linkUrl: 'https://www.imooc.com',
+          linkUrl: '/index/reportLoss',
           picUrl: 'iconfont icon-shouye',
           text: '失物报备'
         },
         {
-          linkUrl: 'https://www.imooc.com',
+          linkUrl: '/index/complaintsComplaint',
           picUrl: 'iconfont icon-shouye',
           text: '投诉建议'
         },
         {
-          linkUrl: 'https://www.imooc.com',
+          linkUrl: '/index/contact',
           picUrl: 'iconfont icon-shouye',
-          text: '快速联系'
+          text: '联系我们'
         }
       ]
     }

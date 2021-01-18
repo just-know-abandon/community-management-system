@@ -25,7 +25,18 @@ import {
   Tabs,
   Swipe,
   SwipeItem,
-  Field
+  Field,
+  Search,
+  Pagination,
+  Form,
+  DatetimePicker,
+  Popup,
+  Calendar,
+  CellGroup,
+  Uploader,
+  Radio,
+  RadioGroup,
+  Picker
 } from 'vant'
 
 Vue.use(Button)
@@ -37,6 +48,17 @@ Vue.use(Tabs)
 Vue.use(Swipe)
 Vue.use(SwipeItem)
 Vue.use(Field)
+Vue.use(Search)
+Vue.use(Pagination)
+Vue.use(Form)
+Vue.use(DatetimePicker)
+Vue.use(Popup)
+Vue.use(Calendar)
+Vue.use(CellGroup)
+Vue.use(Uploader)
+Vue.use(Radio)
+Vue.use(RadioGroup)
+Vue.use(Picker)
 
 Vue.use(vuescroll)
 
