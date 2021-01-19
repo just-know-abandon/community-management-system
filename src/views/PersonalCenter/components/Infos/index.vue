@@ -6,7 +6,7 @@
     <div class="info-content">
       <div class="info-content-mid">
         <ul>
-          <li class="info-content-mid-li">用户名：{{userName}}</li>
+          <li class="info-content-mid-li">用户账号：{{accountNumber}}</li>
           <li class="info-content-mid-li">用户昵称：{{nickName}}</li>
           <li class="info-content-mid-li">归属小区：{{community}}</li>
         </ul>
@@ -20,9 +20,9 @@ export default {
   name: 'Infos',
   data () {
     return {
-      userName: '张三',
+      accountNumber: 'zhangsan123',
       nickName: '啊哈哈',
-      community: '南博小区'
+      community: '好运来小区'
     }
   }
 }

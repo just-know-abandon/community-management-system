@@ -84,6 +84,36 @@ const routes = [
         path: '/index/contact',
         name: 'Contact',
         component: () => import('../views/Index/components/Nav/components/Contact/index.vue')
+      },
+      {
+        path: '/personalCenter/changePersonal',
+        name: 'ChangePersonal',
+        component: () => import('../views/PersonalCenter/components/Option/components/ChangePersonal/index.vue')
+      },
+      {
+        path: '/personalCenter/addressRegister',
+        name: 'AddressRegister',
+        component: () => import('../views/PersonalCenter/components/Option/components/AddressRegister/index.vue')
+      },
+      {
+        path: '/personalCenter/activityManagement',
+        name: 'ActivityManagement',
+        component: () => import('../views/PersonalCenter/components/Option/components/ActivityManagement/index.vue')
+      },
+      {
+        path: '/personalCenter/marketManagement',
+        name: 'MarketManagement',
+        component: () => import('../views/PersonalCenter/components/Option/components/MarketManagement/index.vue')
+      },
+      {
+        path: '/personalCenter/shareManagement',
+        name: 'ShareManagement',
+        component: () => import('../views/PersonalCenter/components/Option/components/ShareManagement/index.vue')
+      },
+      {
+        path: '/personalCenter/changePassword',
+        name: 'ChangePassword',
+        component: () => import('../views/PersonalCenter/components/Option/components/ChangePassword/index.vue')
       }
     ]
   },

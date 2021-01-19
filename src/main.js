@@ -36,7 +36,9 @@ import {
   Uploader,
   Radio,
   RadioGroup,
-  Picker
+  Picker,
+  Toast,
+  SwipeCell
 } from 'vant'
 
 Vue.use(Button)
@@ -59,6 +61,8 @@ Vue.use(Uploader)
 Vue.use(Radio)
 Vue.use(RadioGroup)
 Vue.use(Picker)
+Vue.use(Toast)
+Vue.use(SwipeCell)
 
 Vue.use(vuescroll)
 

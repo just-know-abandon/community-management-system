@@ -77,6 +77,10 @@ export default {
     onConfirm (value) {
       this.extent = value
       this.showPicker = false
+    },
+    onConfirmBildingNumber (value) {
+      this.bildingNumber = value
+      this.showPicker = false
     }
   }
 }

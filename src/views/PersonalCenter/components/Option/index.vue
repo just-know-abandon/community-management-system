@@ -1,26 +1,12 @@
 <template>
   <div class="option-container">
     <div class="option-main">
-      <div class="options">
-        <i class="iconfont icon-shouye"></i>
-        <span>修改个人资料</span>
+      <div class="options" v-for="(item, index) in OptionsList" :key="index">
+        <router-link :to="item.to" class="options-link">
+          <i :class="item.i"></i>
+          <span>{{item.title}}</span>
+        </router-link>
       </div>
-      <div class="options">
-        <i class="iconfont icon-shouye"></i>
-        <span>登记常住人员</span>
-      </div>
-      <div class="options">
-        <i class="iconfont icon-shouye"></i>
-        <span>二手市场管理</span>
-      </div>
-      <div class="options">
-        <i class="iconfont icon-shouye"></i>
-        <span>分享墙管理</span>
-        </div>
-      <div class="options">
-        <i class="iconfont icon-shouye"></i>
-        <span>修改密码</span>
-        </div>
     </div>
     <div class="out">
       <div class="out-btn">
@@ -32,7 +18,43 @@
 
 <script>
 export default {
-  name: 'Option'
+  name: 'Option',
+  data () {
+    return {
+      OptionsList: [
+        {
+          to: '/personalCenter/changePersonal',
+          i: 'iconfont icon-shouye',
+          title: '个人信息'
+        },
+        {
+          to: '/personalCenter/addressRegister',
+          i: 'iconfont icon-shouye',
+          title: '住址信息'
+        },
+        {
+          to: '/personalCenter/activityManagement',
+          i: 'iconfont icon-shouye',
+          title: '组织活动管理'
+        },
+        {
+          to: '/personalCenter/marketManagement',
+          i: 'iconfont icon-shouye',
+          title: '二手市场管理'
+        },
+        {
+          to: '/personalCenter/shareManagement',
+          i: 'iconfont icon-shouye',
+          title: '分享墙管理'
+        },
+        {
+          to: '/personalCenter/changePassword',
+          i: 'iconfont icon-shouye',
+          title: '修改密码'
+        }
+      ]
+    }
+  }
 }
 </script>
 
@@ -45,7 +67,7 @@ export default {
 .option-main{
   // margin-top: 10px;
   // background-color: #eee;
-  padding: 0 20px 10px;
+  padding: 10px 20px 10px;
   // box-shadow: 0 0 4px 0 rgba(150, 150, 150, 0.404); /*no*/
   border-top: 1px solid #eee;
   // border-bottom: 1px solid #eee;
@@ -58,9 +80,15 @@ export default {
   margin-top: 10px;
   padding: 6px 10px;
   box-shadow: 0 0 4px 0 rgba(150, 150, 150, 0.404); /*no*/
-  color: rgb(150, 150, 150);
+  // color: rgb(150, 150, 150);
 }
-.options > i {
+.options-link{
+  color: rgb(150, 150, 150);
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.options-link > i {
   font-size: 20px;
   padding-right: 8px;
   color: rgb(240, 160, 11);
