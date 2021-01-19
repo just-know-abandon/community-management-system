@@ -70,7 +70,7 @@ export default {
 //   font-size: 24px;
 // }
 .chat-top-title{
-  font-size: 22px; /*no*/
+  font-size: 18px; /*no*/
   color: rgb(240, 160, 11);
 }
 .chat-top-online{

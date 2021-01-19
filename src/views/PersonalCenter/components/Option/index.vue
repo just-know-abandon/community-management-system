@@ -11,10 +11,6 @@
       </div>
       <div class="options">
         <i class="iconfont icon-shouye"></i>
-        <span>二手市场发布</span>
-      </div>
-      <div class="options">
-        <i class="iconfont icon-shouye"></i>
         <span>二手市场管理</span>
       </div>
       <div class="options">

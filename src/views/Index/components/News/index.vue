@@ -77,6 +77,7 @@ export default {
 <style scoped>
 .news-container{
   width: 100%;
+  padding-bottom: 10px;
   /* background-color: pink; */
 }
 .box {

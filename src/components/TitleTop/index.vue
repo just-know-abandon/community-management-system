@@ -20,6 +20,11 @@
         <slot name="rightShare"></slot>
       </div>
     </div>
+    <div class="title-top-right" v-if="$slots.rightgoods">
+      <div class="title-top-right-btn" @click="clickgoods">
+        <slot name="rightgoods"></slot>
+      </div>
+    </div>
     <div class="title-top-right" v-if="$slots.ze">
       <slot name="ze"></slot>
     </div>
@@ -66,9 +71,9 @@
           :value="activityDateValue"
           label="活动日期"
           placeholder="点击选择日期"
-          @click="showCalendar = true"
+          @click="showDateCalendar = true"
         />
-        <van-calendar v-model="showCalendar" @confirm="onConfirmDate" />
+        <van-calendar v-model="showDateCalendar" @confirm="onConfirmDate" />
       </van-cell-group>
     </van-dialog>
     <van-dialog
@@ -97,6 +102,51 @@
         </van-field>
       </van-cell-group>
     </van-dialog>
+    <van-dialog
+    v-model="rightgoodsShow"
+    title="二手商品发布"
+    @confirm = "goodsConfirmDialog"
+    @cancel = "goodsCancelDialog"
+    show-cancel-button
+    v-if="$slots.rightgoods">
+      <van-cell-group>
+        <van-field
+          readonly
+          clickable
+          name="goodsType"
+          :value="goodsType"
+          label="商品类型"
+          placeholder="点击选择商品类型"
+          @click="showGoodsCalendar = true"
+        />
+        <van-popup v-model="showGoodsCalendar" position="bottom">
+          <van-picker
+            show-toolbar
+            :columns="columns"
+            @confirm="onConfirmGoods"
+            @cancel="showGoodsCalendar = false"
+          />
+        </van-popup>
+        <van-field v-model="goodsTitleValue" label="商品标题" placeholder="请输入商品标题" />
+        <van-field
+          v-model="goodsDescValue"
+          rows="2"
+          autosize
+          label="商品描述"
+          type="textarea"
+          maxlength="50"
+          placeholder="请输入商品描述"
+          show-word-limit
+        />
+        <van-field v-model="goodsPrice" type="number" label="价格" placeholder="请输入商品价格" />
+        <van-field v-model="goodsContact" label="联系方式" placeholder="请输入微信号或手机号码" />
+        <van-field name="uploader" label="商品图片">
+          <template #input>
+            <van-uploader v-model="goodsUploader" />
+          </template>
+        </van-field>
+      </van-cell-group>
+    </van-dialog>
   </div>
 </template>
 
@@ -107,6 +157,7 @@ export default {
     return {
       rightActivityShow: false,
       rightShareShow: false,
+      rightgoodsShow: false,
       activityTitleValue: '',
       activityPlaceValue: '',
       activityDescValue: '',
@@ -114,9 +165,17 @@ export default {
       activityDateValue: '',
       shareTitleValue: '',
       shareDescValue: '',
+      goodsTitleValue: '',
+      goodsDescValue: '',
+      goodsPrice: '',
+      goodsContact: '',
+      goodsType: '',
       showPicker: false,
-      showCalendar: false,
-      shareUploader: []
+      showDateCalendar: false,
+      showGoodsCalendar: false,
+      shareUploader: [],
+      goodsUploader: [],
+      columns: ['家具', '服饰', '餐厨', '电器', '数码产品', '体育用品', '特产', '其他']
     }
   },
   methods: {
@@ -129,13 +188,20 @@ export default {
     clickShare () {
       this.rightShareShow = true
     },
+    clickgoods () {
+      this.rightgoodsShow = true
+    },
     onConfirmTime (time) {
       this.activityTimeValue = time
       this.showPicker = false
     },
     onConfirmDate (date) {
       this.activityDateValue = `${date.getMonth() + 1}/${date.getDate()}`
-      this.showCalendar = false
+      this.showDateCalendar = false
+    },
+    onConfirmGoods (value) {
+      this.goodsType = value
+      this.showGoodsCalendar = false
     },
     activityConfirmDialog () {
       console.log('添加活动确定')
@@ -164,6 +230,22 @@ export default {
     },
     shareCancelDialog () {
       console.log('分享取消')
+    },
+    goodsConfirmDialog () {
+      console.log('上架确定')
+      console.log(this.goodsTitleValue)
+      console.log(this.goodsDescValue)
+      console.log(this.goodsPrice)
+      console.log(this.goodsContact)
+      console.log(this.goodsUploader)
+      this.goodsTitleValue = ''
+      this.goodsDescValue = ''
+      this.goodsPrice = ''
+      this.goodsContact = ''
+      this.goodsUploader = []
+    },
+    goodsCancelDialog () {
+      console.log('上架取消')
     }
   }
 }
