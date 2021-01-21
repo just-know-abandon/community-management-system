@@ -38,7 +38,8 @@ import {
   RadioGroup,
   Picker,
   Toast,
-  SwipeCell
+  SwipeCell,
+  Card
 } from 'vant'
 
 Vue.use(Button)
@@ -63,6 +64,7 @@ Vue.use(RadioGroup)
 Vue.use(Picker)
 Vue.use(Toast)
 Vue.use(SwipeCell)
+Vue.use(Card)
 
 Vue.use(vuescroll)
 

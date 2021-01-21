@@ -138,6 +138,7 @@
           placeholder="请输入商品描述"
           show-word-limit
         />
+        <van-field v-model="goodsQuantity" type="digit" label="数量" placeholder="请输入商品数量" />
         <van-field v-model="goodsPrice" type="number" label="价格" placeholder="请输入商品价格" />
         <van-field v-model="goodsContact" label="联系方式" placeholder="请输入微信号或手机号码" />
         <van-field name="uploader" label="商品图片">
@@ -167,6 +168,7 @@ export default {
       shareDescValue: '',
       goodsTitleValue: '',
       goodsDescValue: '',
+      goodsQuantity: '',
       goodsPrice: '',
       goodsContact: '',
       goodsType: '',
@@ -235,11 +237,13 @@ export default {
       console.log('上架确定')
       console.log(this.goodsTitleValue)
       console.log(this.goodsDescValue)
+      console.log(this.goodsQuantity)
       console.log(this.goodsPrice)
       console.log(this.goodsContact)
       console.log(this.goodsUploader)
       this.goodsTitleValue = ''
       this.goodsDescValue = ''
+      this.goodsQuantity = ''
       this.goodsPrice = ''
       this.goodsContact = ''
       this.goodsUploader = []
