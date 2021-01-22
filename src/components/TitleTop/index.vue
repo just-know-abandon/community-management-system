@@ -235,12 +235,14 @@ export default {
     },
     goodsConfirmDialog () {
       console.log('上架确定')
+      console.log(this.goodsType)
       console.log(this.goodsTitleValue)
       console.log(this.goodsDescValue)
       console.log(this.goodsQuantity)
       console.log(this.goodsPrice)
       console.log(this.goodsContact)
       console.log(this.goodsUploader)
+      this.goodsType = ''
       this.goodsTitleValue = ''
       this.goodsDescValue = ''
       this.goodsQuantity = ''

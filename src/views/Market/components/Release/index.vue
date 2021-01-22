@@ -23,11 +23,10 @@
           </ul>
         </div>
       </van-dialog>
-      <van-tabs class="tabs" v-model="activeName" sticky swipeable>
+      <van-tabs class="tabs" v-model="activeName" swipeable>
         <van-tab class="tab" v-for="(item, index) in mock" :key="index" :name="item.name" :title="item.title">
           <!-- <div> -->
-            <!-- {{item}} -->
-          <Goods :mock="item.children"></Goods>
+          <Goods :mock="item.children" :goodsType="item.title"></Goods>
           <!-- </div> -->
         </van-tab>
       </van-tabs>
@@ -57,27 +56,52 @@ export default {
             {
               id: 101,
               type: 'a',
-              content: '家具1'
+              goodsTitleValue: '柜桶',
+              goodsDescValue: '三层柜桶',
+              goodsQuantity: '1',
+              goodsPrice: '50',
+              goodsContact: 'fsfs411',
+              goodsUploader: require('../../../../assets/images/scenery/01.jpg')
             },
             {
               id: 102,
               type: 'a',
-              content: '家具2家具2家具2家具2家具2家具2'
+              goodsTitleValue: '床头柜',
+              goodsDescValue: '家具2家具2家具2家具2家具2家具2家具2家具2家具2家具2家具2家具2',
+              goodsQuantity: '1',
+              goodsPrice: '999',
+              goodsContact: '151151515',
+              goodsUploader: require('../../../../assets/images/scenery/02.jpg')
             },
             {
               id: 103,
               type: 'a',
-              content: '家具3家具3家具3家具3'
+              goodsTitleValue: '床垫',
+              goodsDescValue: '1.8床垫',
+              goodsQuantity: '1',
+              goodsPrice: '100',
+              goodsContact: 'qqq123',
+              goodsUploader: require('../../../../assets/images/scenery/03.jpg')
             },
             {
               id: 104,
               type: 'a',
-              content: '家具4家具4家具4家具4家具4家具4家具4家具4'
+              goodsTitleValue: '书桌',
+              goodsDescValue: '书桌啊',
+              goodsQuantity: '1',
+              goodsPrice: '100',
+              goodsContact: 'rgfd444',
+              goodsUploader: require('../../../../assets/images/scenery/04.jpg')
             },
             {
-              id: 105,
+              id: 104,
               type: 'a',
-              content: '家具5家具5家具5家具5家具5家具5家具5家具5家具5家具5家具5家具5'
+              goodsTitleValue: '桌子',
+              goodsDescValue: '刚买的桌子',
+              goodsQuantity: '1',
+              goodsPrice: '85',
+              goodsContact: '18144572354',
+              goodsUploader: require('../../../../assets/images/scenery/05.jpg')
             }
           ]
         },

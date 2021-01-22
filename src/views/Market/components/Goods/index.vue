@@ -1,39 +1,31 @@
 <template>
-  <div class="news-container">
-    <div ref="rbox" class="box">
-      <!-- {{mock}} -->
-      <!-- {{itemChild.content}} {{ itemChild.id }} -->
-      <!-- <div ref="ritem" class="item"> -->
-      <ul class="ula" ref="rul">
-        <li :class="item.type" ref="rli" v-for="(item, index) in mock" :key="index">
-          {{item.content}} ---- {{item.type}}
+  <div class="goods-container">
+    <div ref="goodsbox" class="goods-box">
+      <ul class="goods-box-ul" ref="boxul">
+        <li :class="item.type" ref="boxli" v-for="(item, index) in mock" :key="index">
+          <!-- {{item.content}} ---- {{item.type}} -->
+          <div class="goods-box-main">
+            <div class="goods-box-main-imgbox">
+              <img class="goods-box-main-img" :src="item.goodsUploader" alt="">
+            </div>
+            <div class="goods-box-main-content">
+              <span class="goods-box-main-content-title">商品标题：{{item.goodsTitleValue}}</span>
+                  <div class="goods-box-main-content-desc">描述：{{item.goodsDescValue}}</div>
+                  <!-- <div class="goods-box-main-content-date">类型：{{goodsType}}</div> -->
+                  <div class="goods-box-main-content-date">数量：{{item.goodsQuantity}}</div>
+                  <div class="goods-box-main-content-date">价格：￥{{item.goodsPrice}}</div>
+                  <div class="goods-box-main-content-date">联系方式：{{item.goodsContact}}</div>
+            </div>
+          </div>
         </li>
       </ul>
-        <!-- {{mock}} -->
-        <!-- {{mock}} -->
-        <!-- {{mock.content}} -->
-      <!-- </div> -->
-      <!-- <div ref="ritem" class="item" style="height: 40px;background: red;"></div>
-      <div class="item" style="height: 50px;background: blue;"></div>
-      <div class="item" style="height: 100px;background: green;"></div>
-      <div class="item" style="height: 60px;background: gray;"></div>
-      <div class="item" style="height: 50px;background: orange;"></div>
-      <div class="item" style="height: 20px;background: yellow;"></div>
-      <div class="item" style="height: 40px;background: red;"></div>
-      <div class="item" style="height: 50px;background: blue;"></div>
-      <div class="item" style="height: 100px;background: green;"></div>
-      <div class="item" style="height: 120px;background: gray;"></div>
-      <div class="item" style="height: 58px;background: orange;"></div>
-      <div class="item" style="height: 36px;background: yellow;"></div>
-      <div class="item" style="height: 36px;background: yellow;"></div>
-      <div class="item" style="height: 58px;background: orange;"></div> -->
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'News',
+  name: 'Goods',
   data () {
     return {
       offwidtha: ''
@@ -42,6 +34,9 @@ export default {
   props: {
     mock: {
       type: Array
+    },
+    goodsType: {
+      type: String
     }
   },
   watch: {
@@ -55,7 +50,7 @@ export default {
     window.onresize = () => {
       return (() => {
         // 这里写要操作的函数
-        this.offwidtha = this.$refs.rul.offsetWidth
+        this.offwidtha = this.$refs.boxul.offsetWidth
         // console.log(this.$refs.rul.offsetWidth)
         // console.log(this.$refs.rli[0].offsetWidth)
         // console.log(this.$refs.rli[0].className)
@@ -72,10 +67,10 @@ export default {
   methods: {
     a () {
       // 300 //瀑布流外层盒子的宽度
-      const BOX_WIDTH = this.$refs.rul.offsetWidth
+      const BOX_WIDTH = this.$refs.boxul.offsetWidth
       console.log(BOX_WIDTH)
       // 140 //瀑布流内层盒子的宽度
-      const ITEM_WIDTH = this.$refs.rli[0].offsetWidth
+      const ITEM_WIDTH = this.$refs.boxli[0].offsetWidth
       console.log(ITEM_WIDTH)
       // 2   //根据宽度计算可渲染的列数
       const COLUMN = Math.floor(BOX_WIDTH / ITEM_WIDTH)
@@ -87,7 +82,7 @@ export default {
       const heightArr = new Array(COLUMN).fill(0)
       // 遍历每一个小盒子，确定小盒子的位置
       // const item = this.$refs.rli[0].className
-      const item = document.querySelectorAll(`${'.' + this.$refs.rli[0].className}`)
+      const item = document.querySelectorAll(`${'.' + this.$refs.boxli[0].className}`)
       // item.length=12
       for (let i = 0; i < item.length; i++) {
         // 0
@@ -103,7 +98,7 @@ export default {
       console.log(item.length)
       console.log(item)
       // 将数组中最大的值，即最高的那一列的高度赋给外层盒子
-      this.$refs.rbox.style.height = Math.max.apply(null, heightArr) + 'px'
+      this.$refs.goodsbox.style.height = Math.max.apply(null, heightArr) + 'px'
     }
   },
   created () {
@@ -117,17 +112,17 @@ export default {
   height: 80px;
   background-color: ping;
 } */
-.news-container{
+.goods-container{
   width: 100%;
   /* background-color: pink; */
 }
-.box {
+.goods-box {
   position: relative;
   width: calc(100vw - 28px); /*no*/
   /* min-height: calc(100vh - 44px - 112px - 50px - 40px - 10px); */
   /* padding-bottom: 10px; */
   margin: 0 auto;
-  background: #eeeeee;
+  /* background: rgb(248, 246, 246); */
   /* height: 1000px; */
 }
 /* .item {
@@ -136,7 +131,7 @@ export default {
   left: 0;
   top: 0;
 } */
-.ula{
+.goods-box-ul{
   /* padding: 0; */
   width: 100%;
   margin: 0;
@@ -148,9 +143,47 @@ export default {
   position: absolute;
   left: 0; /*no*/
   top: 0; /*no*/
-  background-color: pink;
+  /* background-color: pink; */
   display: block;
   width: 164px;
+  background: rgb(255, 254, 254);
+  border-radius: 4px;
+  border: 1px solid #fff;
+  box-shadow: 0 0 4px 0 rgba(240, 160, 11, 0.404); /*no*/
+  overflow: hidden;
   /* margin-top: 10px; */
+}
+.goods-box-main{
+  width: 100%;
+}
+.goods-box-main-imgbox{
+  width: 164px;
+  height: 140px;
+  margin: 0 auto;
+  background-color: #eee;
+}
+.goods-box-main-img{
+  width: 164px;
+  height: 140px;
+}
+.goods-box-main-content{
+  padding: 0 4px 6px 4px;
+}
+.goods-box-main-content-title{
+  height: 20px;
+  line-height: 20px;
+  font-size: 14px;
+  /* font-weight: bold; */
+  /* border-bottom: 1px solid rgb(150, 150, 150); */
+}
+.goods-box-main-content-desc{
+  line-height: 16px;
+  font-size: 12px;
+  margin-top: 2px;
+}
+.goods-box-main-content-date{
+  line-height: 16px;
+  font-size: 12px;
+  margin-top: 2px;
 }
 </style>

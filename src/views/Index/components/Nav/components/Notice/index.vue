@@ -118,7 +118,7 @@ export default {
   // background-color: #eee;
   width: 100%;
   // height: 50px;
-  line-height: 16spx;
+  line-height: 16px;
   font-size: 12px;
   margin-top: 2px;
   text-align: end;

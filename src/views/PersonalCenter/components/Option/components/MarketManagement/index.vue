@@ -26,7 +26,7 @@
                   <div class="market-management-swipe-desc">描述：好用的小米10手机，自用98新，外表无磕碰，带原装充电器，价格可以小刀。</div>
                   <div class="market-management-swipe-date">类型：电子产品</div>
                   <div class="market-management-swipe-date">数量：1</div>
-                  <div class="market-management-swipe-date">价格：￥19：00</div>
+                  <div class="market-management-swipe-date">价格：￥19.00</div>
                   <div class="market-management-swipe-date">联系方式：110115313121</div>
                 </div>
               </div>
