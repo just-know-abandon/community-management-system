@@ -46,7 +46,7 @@ export default {
   name: 'change-password',
   data () {
     return {
-      accountNumber: '',
+      accountNumber: localStorage.getItem('account') || '',
       oldPassword: '',
       newPassword: ''
     }

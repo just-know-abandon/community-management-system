@@ -60,7 +60,7 @@ export default {
           text: '失物报备'
         },
         {
-          linkUrl: '/index/complaintsComplaint',
+          linkUrl: '/index/complaint',
           picUrl: 'iconfont icon-shouye',
           text: '投诉建议'
         },

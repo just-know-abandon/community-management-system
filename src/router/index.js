@@ -76,9 +76,9 @@ const routes = [
         component: () => import('../views/Index/components/Nav/components/ReportLoss/index.vue')
       },
       {
-        path: '/index/complaintsComplaint',
-        name: 'ComplaintsComplaint',
-        component: () => import('../views/Index/components/Nav/components/ComplaintsComplaint/index.vue')
+        path: '/index/complaint',
+        name: 'Complaint',
+        component: () => import('../views/Index/components/Nav/components/Complaint/index.vue')
       },
       {
         path: '/index/contact',
@@ -114,6 +114,16 @@ const routes = [
         path: '/personalCenter/changePassword',
         name: 'ChangePassword',
         component: () => import('../views/PersonalCenter/components/Option/components/ChangePassword/index.vue')
+      },
+      {
+        path: '/personalCenter/login',
+        name: 'Login',
+        component: () => import('../views/PersonalCenter/components/Login/index.vue')
+      },
+      {
+        path: '/personalCenter/register',
+        name: 'Register',
+        component: () => import('../views/PersonalCenter/components/Register/index.vue')
       }
     ]
   },

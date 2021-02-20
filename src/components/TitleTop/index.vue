@@ -97,7 +97,7 @@
         />
         <van-field name="uploader" label="分享图片">
           <template #input>
-            <van-uploader v-model="shareUploader" />
+            <van-uploader v-model="shareUploader" :after-read="afterRead" />
           </template>
         </van-field>
       </van-cell-group>
@@ -177,10 +177,42 @@ export default {
       showGoodsCalendar: false,
       shareUploader: [],
       goodsUploader: [],
-      columns: ['家具', '服饰', '餐厨', '电器', '数码产品', '体育用品', '特产', '其他']
+      columns: ['家具', '服饰', '餐厨', '电器', '电子产品', '体育用品', '特产', '其他']
     }
   },
   methods: {
+    afterRead (file) {
+      // 此时可以自行将文件上传至服务器
+      // console.log(file.file)
+      const a = file.file
+      console.log(a)
+      const formData = new FormData()
+      console.log(formData)
+      formData.set('file', file.file)
+      formData.set('name', file.file.name)
+      formData.set('timestamp', Date.now())
+      console.log(formData)
+      // for (var key of formData.entries()) {
+      //   console.log(key[0] + ', ' + key[1])
+      // }
+      this.$axios.post('http://localhost:3000/upload', formData, {
+        header: {
+          'Content-Type': 'multipart/form-data'
+        }
+      })
+        .then(res => {
+          console.log(res.data)
+          console.log(res.data.filename)
+          // if (res.data.code === 0) {
+          //   this.$toast('上传成功')
+          // } else {
+          //   this.$toast(res.msg)
+          // }
+        }).catch(err => {
+          console.log(err)
+          // this.$toast(err)
+        })
+    },
     back () {
       this.$router.go(-1)
     },
@@ -269,7 +301,7 @@ export default {
 }
 .title-top-left{
   width: 60px; /*no*/
-  height: 100%;
+  height: 50px; /*no*/
   // background-color: blue;
   line-height: 50px;  /*no*/
   text-align: center;

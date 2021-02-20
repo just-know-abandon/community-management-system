@@ -18,10 +18,10 @@
         <div class="notice-main-title">公告列表</div>
         <div class="notice-main-list">
           <ul class="notice-main-list-ul">
-            <li class="notice-main-list-li">
-              <span class="notice-main-list-li-title">今晚吃饭</span>
-              <div class="notice-main-list-li-desc">今晚吃饭今晚吃饭今晚吃饭今晚吃饭今晚吃饭今晚吃饭今晚吃饭今晚吃饭今晚吃饭今晚吃饭今晚吃饭今晚吃饭今晚吃饭今晚吃饭今晚吃饭今晚吃饭今晚吃饭今晚吃饭今晚吃饭今晚吃饭今晚吃饭今晚吃饭今晚吃饭今晚吃饭</div>
-              <div class="notice-main-list-li-date">日期：2020-1-18</div>
+            <li class="notice-main-list-li" v-for="item in newsNotice" :key="item.id">
+              <span class="notice-main-list-li-title">{{item.notice_title}}</span>
+              <div class="notice-main-list-li-desc">{{item.notice_content}}</div>
+              <div class="notice-main-list-li-date">{{item.notice_date}}</div>
             </li>
           </ul>
         </div>
@@ -29,7 +29,8 @@
       <van-pagination
       class="pagination"
       v-model="currentPage"
-      :total-items="30"
+      @change="pagechange"
+      :total-items="this.newsNoticeTotle"
       :items-per-page="5" />
     </div>
   </div>
@@ -42,15 +43,49 @@ export default {
   data () {
     return {
       value: '',
-      currentPage: 1
+      currentPage: 1,
+      newsNotice: [],
+      newsNoticeTotle: ''
     }
   },
   components: {
     TitleTop
   },
+  created () {
+    this.getList(0, 5)
+    this.getListTotle()
+  },
   methods: {
     onSearch (val) {
       console.log(val)
+    },
+    getList (limitF, limitS) {
+      this.$axios.post('http://localhost:3000/api/admin/searchNotice', {
+        limitF,
+        limitS
+      })
+        .then(res => {
+          console.log(res.data.data)
+          this.newsNotice = res.data.data
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    getListTotle () {
+      this.$axios.post('http://localhost:3000/api/admin/searchNotice')
+        .then(res => {
+          this.newsNoticeTotle = res.data.data.length
+          console.log(res.data.data.length)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    pagechange () {
+      console.log(this.currentPage)
+      const curpagechange = this.currentPage - 1
+      this.getList(curpagechange * 5, 5)
     }
   }
 }
@@ -124,7 +159,7 @@ export default {
   text-align: end;
 }
 .pagination{
-  margin-top: 10px;
+  margin: 10px 0;
   padding: 0 14px;
 }
 </style>

@@ -25,13 +25,13 @@ export default {
         {
           to: '/personalCenter/changePersonal',
           i: 'iconfont icon-shouye',
-          title: '个人信息'
+          title: '账号信息'
         },
-        {
-          to: '/personalCenter/addressRegister',
-          i: 'iconfont icon-shouye',
-          title: '住址信息'
-        },
+        // {
+        //   to: '/personalCenter/addressRegister',
+        //   i: 'iconfont icon-shouye',
+        //   title: '住址信息'
+        // },
         {
           to: '/personalCenter/activityManagement',
           i: 'iconfont icon-shouye',

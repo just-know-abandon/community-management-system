@@ -3,7 +3,7 @@
     <TitleTop>
       <span slot="lefti"></span>
       <span slot="mid">
-        个人信息
+        账号信息
       </span>
       <span slot="ze"></span>
     </TitleTop>
@@ -30,14 +30,14 @@
           placeholder="请填写登录账号"
           :rules="[{ required: true }]"
         />
-        <van-field name="sex" label="性别">
+        <!-- <van-field name="sex" label="性别">
           <template #input>
             <van-radio-group v-model="sex" direction="horizontal">
               <van-radio class="radio" name="1">男</van-radio>
               <van-radio class="radio" name="2">女</van-radio>
             </van-radio-group>
           </template>
-        </van-field>
+        </van-field> -->
         <van-field
           v-model="phoneNumber"
           name="phoneNumber"
@@ -65,11 +65,11 @@ export default {
   name: 'change-personal',
   data () {
     return {
-      userName: '',
-      nickName: '',
-      accountNumber: '',
-      sex: '1',
-      phoneNumber: '',
+      userName: localStorage.getItem('realname') || '',
+      nickName: localStorage.getItem('nickname') || '',
+      accountNumber: localStorage.getItem('account') || '',
+      // sex: '1',
+      phoneNumber: localStorage.getItem('phone') || '',
       uploader: []
     }
   },

@@ -1,12 +1,12 @@
 <template>
   <div class="news-container">
     <div ref="rbox" class="news-main">
-      <ul class="news-main-ul" ref="newsul">
-        <li class="news-main-li" ref="newsli" v-for="(item, index) in mock" :key="index">
+      <ul class="news-main-ul" ref="newsul" id="news">
+        <li class="qqq" ref="newsli" v-for="item in newsNotice" :key="item.id">
           <div class="news-main-li-content">
-            <span class="news-main-li-content-title">{{item.title}}</span>
-            <p class="news-main-li-content-desc">{{item.desc}}</p>
-            <p class="news-main-li-content-date">{{item.date}}</p>
+            <span class="news-main-li-content-title">{{item.notice_title}}</span>
+            <p class="news-main-li-content-desc">{{item.notice_desc}}</p>
+            <p class="news-main-li-content-date">{{item.notice_date}}</p>
           </div>
         </li>
       </ul>
@@ -20,6 +20,7 @@ export default {
   data () {
     return {
       offwidtha: '',
+      newsNotice: [],
       mock: [
         {
           id: 0,
@@ -64,6 +65,10 @@ export default {
       // 300 //瀑布流外层盒子的宽度
       const BOX_WIDTH = this.$refs.newsul.offsetWidth
       console.log(BOX_WIDTH)
+      // console.log(this.$refs)
+      // console.log(this.$refs.newsli)
+      // console.log(this.$refs.newsli[0])
+      console.log(666666)
       // 140 //瀑布流内层盒子的宽度
       const ITEM_WIDTH = this.$refs.newsli[0].offsetWidth
       console.log(ITEM_WIDTH)
@@ -77,7 +82,9 @@ export default {
       const heightArr = new Array(COLUMN).fill(0)
       // 遍历每一个小盒子，确定小盒子的位置
       // const item = this.$refs.newsli[0].className
-      const item = document.querySelectorAll(`${'.' + this.$refs.newsli[0].className}`)
+      // const item = document.getElementById('news').getElementsByTagName('li')
+      const item = document.querySelectorAll('.qqq')
+      console.log(item)
       // item.length=12
       for (let i = 0; i < item.length; i++) {
         // 0
@@ -94,9 +101,25 @@ export default {
       console.log(item)
       // 将数组中最大的值，即最高的那一列的高度赋给外层盒子
       this.$refs.rbox.style.height = Math.max.apply(null, heightArr) + 'px'
+    },
+    getList (limitF, limitS) {
+      this.$axios.post('http://localhost:3000/api/admin/searchNotice', {
+        limitF,
+        limitS
+      })
+        .then(res => {
+          console.log(res.data.data)
+          this.newsNotice = res.data.data
+          console.log(this.newsNotice)
+        })
+        .catch(err => {
+          console.log(err)
+        })
     }
   },
   created () {
+    console.log(123123123123)
+    this.getList(0, 6)
   },
   watch: {
     offwidtha (newvalue, oldvalue) {
@@ -104,8 +127,15 @@ export default {
       this.a()
     }
   },
-  mounted () {
+  updated () {
     this.a()
+    console.log(1)
+    // this.a()
+    console.log(2)
+    // console.log(this.$refs.rbox.offsetWidth)
+    // console.log(this.$refs.ritem.offsetWidth)
+  },
+  mounted () {
     window.onresize = () => {
       return (() => {
         // 这里写要操作的函数
@@ -113,8 +143,6 @@ export default {
         // this.a()
       })()
     }
-    // console.log(this.$refs.rbox.offsetWidth)
-    // console.log(this.$refs.ritem.offsetWidth)
   }
 }
 </script>
@@ -140,7 +168,9 @@ export default {
   min-width: 100px;
   font-size: 20px;
 }
-.news-main-li {
+/* .a, .b, .c, .d, .e  */
+/* news-main-li */
+.qqq {
   position: absolute;
   left: 0; /*no*/
   top: 0; /*no*/

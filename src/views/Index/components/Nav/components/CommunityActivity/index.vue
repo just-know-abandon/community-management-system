@@ -18,11 +18,11 @@
         <div class="notice-main-title">活动列表</div>
         <div class="notice-main-list">
           <ul class="notice-main-list-ul">
-            <li class="notice-main-list-li">
-              <span class="notice-main-list-li-title">今晚骑单车</span>
-              <div class="notice-main-list-li-desc">今晚骑单车今晚骑单车今晚骑单车</div>
-              <div class="notice-main-list-li-date">地点：北门</div>
-              <div class="notice-main-list-li-date">日期：2020-1-18</div>
+            <li class="notice-main-list-li" v-for="item in activitys" :key="item.id">
+              <span class="notice-main-list-li-title">{{item.activity_title}}</span>
+              <div class="notice-main-list-li-desc">{{item.activity_content}}</div>
+              <div class="notice-main-list-li-date">地点：{{item.activity_place}}</div>
+              <div class="notice-main-list-li-date">日期：{{item.activity_date}}</div>
             </li>
           </ul>
         </div>
@@ -30,7 +30,8 @@
       <van-pagination
       class="pagination"
       v-model="currentPage"
-      :total-items="30"
+      @change="pagechange"
+      :total-items="this.activitysTotle"
       :items-per-page="5" />
     </div>
   </div>
@@ -43,15 +44,49 @@ export default {
   data () {
     return {
       value: '',
-      currentPage: 1
+      currentPage: 1,
+      activitys: [],
+      activitysTotle: ''
     }
   },
   components: {
     TitleTop
   },
+  created () {
+    this.getList(0, 5)
+    this.getListTotle()
+  },
   methods: {
     onSearch (val) {
       console.log(val)
+    },
+    getList (limitF, limitS) {
+      this.$axios.post('http://localhost:3000/api/admin/searchActivity', {
+        limitF,
+        limitS
+      })
+        .then(res => {
+          console.log(res.data.data)
+          this.activitys = res.data.data
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    getListTotle () {
+      this.$axios.post('http://localhost:3000/api/admin/searchActivity')
+        .then(res => {
+          this.activitysTotle = res.data.data.length
+          console.log(res.data.data.length)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    pagechange () {
+      console.log(this.currentPage)
+      const curpagechange = this.currentPage - 1
+      this.getList(curpagechange * 5, 5)
     }
   }
 }
@@ -125,7 +160,7 @@ export default {
   text-align: end;
 }
 .pagination{
-  margin-top: 10px;
+  margin: 10px 0;
   padding: 0 14px;
 }
 </style>

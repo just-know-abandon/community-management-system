@@ -2,12 +2,13 @@
   <div class="infos-container">
     <div class="infos-pic">
       <img class="infos-pic-image" src="../../../../assets/logo.png" alt="">
+      <!-- <img class="infos-pic-image" src="http://localhost:3000/uploads/file-1773b71093b.jpg" alt=""> -->
     </div>
     <div class="info-content">
       <div class="info-content-mid">
         <ul>
-          <li class="info-content-mid-li">用户账号：{{accountNumber}}</li>
-          <li class="info-content-mid-li">用户昵称：{{nickName}}</li>
+          <li class="info-content-mid-li">用户账号：{{curAccount || accountNumber}}</li>
+          <li class="info-content-mid-li">用户昵称：{{curNickName || nickName}}</li>
           <li class="info-content-mid-li">归属小区：{{community}}</li>
         </ul>
       </div>
@@ -20,9 +21,11 @@ export default {
   name: 'Infos',
   data () {
     return {
-      accountNumber: 'zhangsan123',
-      nickName: '啊哈哈',
-      community: '好运来小区'
+      accountNumber: '游客',
+      nickName: '游客',
+      community: '好运来小区',
+      curAccount: localStorage.getItem('account'),
+      curNickName: localStorage.getItem('nickname')
     }
   }
 }

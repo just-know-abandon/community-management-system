@@ -2,19 +2,19 @@
   <div class="goods-container">
     <div ref="goodsbox" class="goods-box">
       <ul class="goods-box-ul" ref="boxul">
-        <li :class="item.type" ref="boxli" v-for="(item, index) in mock" :key="index">
+        <li :class="item.goods_type" ref="boxli" v-for="item in goodsList" :key="item.id">
           <!-- {{item.content}} ---- {{item.type}} -->
           <div class="goods-box-main">
             <div class="goods-box-main-imgbox">
-              <img class="goods-box-main-img" :src="item.goodsUploader" alt="">
+              <img class="goods-box-main-img" :src="item.goods_picture" alt="">
             </div>
             <div class="goods-box-main-content">
-              <span class="goods-box-main-content-title">商品标题：{{item.goodsTitleValue}}</span>
-                  <div class="goods-box-main-content-desc">描述：{{item.goodsDescValue}}</div>
+              <span class="goods-box-main-content-title">商品标题：{{item.goods_title}}</span>
+                  <div class="goods-box-main-content-desc">描述：{{item.goods_desc}}</div>
                   <!-- <div class="goods-box-main-content-date">类型：{{goodsType}}</div> -->
-                  <div class="goods-box-main-content-date">数量：{{item.goodsQuantity}}</div>
-                  <div class="goods-box-main-content-date">价格：￥{{item.goodsPrice}}</div>
-                  <div class="goods-box-main-content-date">联系方式：{{item.goodsContact}}</div>
+                  <div class="goods-box-main-content-date">数量：{{item.goods_number}}</div>
+                  <div class="goods-box-main-content-date">价格：￥{{item.goods_price}}</div>
+                  <div class="goods-box-main-content-date">联系方式：{{item.acc_phone}}</div>
             </div>
           </div>
         </li>
@@ -28,13 +28,14 @@ export default {
   name: 'Goods',
   data () {
     return {
-      offwidtha: ''
+      offwidtha: '',
+      goodsList: []
     }
   },
   props: {
-    mock: {
-      type: Array
-    },
+    // mock: {
+    //   type: Array
+    // },
     goodsType: {
       type: String
     }
@@ -46,7 +47,7 @@ export default {
     }
   },
   mounted () {
-    this.a()
+    // this.a()
     window.onresize = () => {
       return (() => {
         // 这里写要操作的函数
@@ -61,9 +62,9 @@ export default {
     // console.log(this.$refs.rli[0].offsetWidth)
     // console.log(this.$refs.rli[0].className)
   },
-  // updated () {
-  //   this.a()
-  // },
+  updated () {
+    this.a()
+  },
   methods: {
     a () {
       // 300 //瀑布流外层盒子的宽度
@@ -99,9 +100,24 @@ export default {
       console.log(item)
       // 将数组中最大的值，即最高的那一列的高度赋给外层盒子
       this.$refs.goodsbox.style.height = Math.max.apply(null, heightArr) + 'px'
+    },
+    getList (limitF, limitS) {
+      this.$axios.post('http://localhost:3000/api/user/searchUserMarketGoods', {
+        limitF,
+        limitS,
+        type: this.goodsType
+      })
+        .then(res => {
+          console.log(res.data.data)
+          this.goodsList = res.data.data
+        })
+        .catch(err => {
+          console.log(err)
+        })
     }
   },
   created () {
+    this.getList()
   }
 }
 </script>
