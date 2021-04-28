@@ -1,7 +1,7 @@
 <template>
   <div class="title-top">
     <div class="title-top-left" v-if="$slots.lefti" @click="back">
-      <i class="iconfont icon-shouye title-top-left-i"></i>
+      <i class="iconfont icon-fanhui title-top-left-i"></i>
       <slot name="lefti"></slot>
     </div>
     <div class="title-top-left" v-if="$slots.left">
@@ -36,8 +36,8 @@
     show-cancel-button
     v-if="$slots.rightActivity">
       <van-cell-group>
-        <van-field v-model="activityTitleValue" label="活动" placeholder="请输入用户名" />
-        <van-field v-model="activityPlaceValue" label="地点" placeholder="请输入用户名" />
+        <van-field v-model="activityTitleValue" label="活动" placeholder="请输入活动标题" />
+        <van-field v-model="activityPlaceValue" label="地点" placeholder="请输入活动地点" />
         <van-field
           v-model="activityDescValue"
           rows="2"
@@ -97,7 +97,7 @@
         />
         <van-field name="uploader" label="分享图片">
           <template #input>
-            <van-uploader v-model="shareUploader" :after-read="afterRead" />
+            <van-uploader v-model="shareUploader" :after-read="afterUploadShareImg" />
           </template>
         </van-field>
       </van-cell-group>
@@ -140,10 +140,10 @@
         />
         <van-field v-model="goodsQuantity" type="digit" label="数量" placeholder="请输入商品数量" />
         <van-field v-model="goodsPrice" type="number" label="价格" placeholder="请输入商品价格" />
-        <van-field v-model="goodsContact" label="联系方式" placeholder="请输入微信号或手机号码" />
+        <!-- <van-field v-model="goodsContact" label="联系方式" placeholder="请输入微信号或手机号码" /> -->
         <van-field name="uploader" label="商品图片">
           <template #input>
-            <van-uploader v-model="goodsUploader" />
+            <van-uploader v-model="goodsUploader" :after-read="afterUploadGoodsImg" />
           </template>
         </van-field>
       </van-cell-group>
@@ -156,6 +156,8 @@ export default {
   name: 'TitleTop',
   data () {
     return {
+      uploadShareImg: '',
+      uploadGoodsImg: '',
       rightActivityShow: false,
       rightShareShow: false,
       rightgoodsShow: false,
@@ -181,11 +183,9 @@ export default {
     }
   },
   methods: {
-    afterRead (file) {
+    afterUploadShareImg (file) {
       // 此时可以自行将文件上传至服务器
       // console.log(file.file)
-      const a = file.file
-      console.log(a)
       const formData = new FormData()
       console.log(formData)
       formData.set('file', file.file)
@@ -195,7 +195,7 @@ export default {
       // for (var key of formData.entries()) {
       //   console.log(key[0] + ', ' + key[1])
       // }
-      this.$axios.post('http://localhost:3000/upload', formData, {
+      this.$axios.post('upload', formData, {
         header: {
           'Content-Type': 'multipart/form-data'
         }
@@ -203,14 +203,34 @@ export default {
         .then(res => {
           console.log(res.data)
           console.log(res.data.filename)
-          // if (res.data.code === 0) {
-          //   this.$toast('上传成功')
-          // } else {
-          //   this.$toast(res.msg)
-          // }
+          this.uploadShareImg = res.data.filename
         }).catch(err => {
           console.log(err)
-          // this.$toast(err)
+        })
+    },
+    afterUploadGoodsImg (file) {
+      // 此时可以自行将文件上传至服务器
+      // console.log(file.file)
+      const formData = new FormData()
+      console.log(formData)
+      formData.set('file', file.file)
+      formData.set('name', file.file.name)
+      formData.set('timestamp', Date.now())
+      console.log(formData)
+      // for (var key of formData.entries()) {
+      //   console.log(key[0] + ', ' + key[1])
+      // }
+      this.$axios.post('upload', formData, {
+        header: {
+          'Content-Type': 'multipart/form-data'
+        }
+      })
+        .then(res => {
+          console.log(res.data)
+          console.log(res.data.filename)
+          this.uploadGoodsImg = res.data.filename
+        }).catch(err => {
+          console.log(err)
         })
     },
     back () {
@@ -244,6 +264,24 @@ export default {
       console.log(this.activityDescValue)
       console.log(this.activityTimeValue)
       console.log(this.activityDateValue)
+      this.$axios.post('api/user/addUserActivity', {
+        title: this.activityTitleValue,
+        content: this.activityDescValue,
+        place: this.activityPlaceValue,
+        date: this.activityDateValue + '-' + this.activityTimeValue,
+        userId: localStorage.getItem('id')
+      })
+        .then(res => {
+          console.log(res.data.data)
+          this.activitys = res.data.data
+          // this.$router.push({
+          //   name: 'OrganizingActivity'
+          // })
+          this.$emit('getList')
+        })
+        .catch(err => {
+          console.log(err)
+        })
       this.activityTitleValue = ''
       this.activityPlaceValue = ''
       this.activityDescValue = ''
@@ -258,9 +296,36 @@ export default {
       console.log(this.shareTitleValue)
       console.log(this.shareDescValue)
       console.log(this.shareUploader)
+      console.log(this.uploadShareImg)
+      // this.shareTitleValue = ''
+      // this.shareDescValue = ''
+      // this.shareUploader = []
+      this.$axios.post('api/user/addUserShare', {
+        title: this.shareTitleValue,
+        desc: this.shareDescValue,
+        content: this.shareDescValue,
+        picture: this.uploadShareImg,
+        userPic: localStorage.getItem('picture'),
+        date: new Date().getMonth() + 1 + '/' + new Date().getDate(),
+        done: '0',
+        userId: localStorage.getItem('id')
+      })
+        .then(res => {
+          console.log(res)
+          // this.activitys = res.data.data
+          // this.$router.push({
+          //   name: 'OrganizingActivity'
+          // })
+          // this.$emit('getList')
+        })
+        .catch(err => {
+          console.log(err)
+        })
       this.shareTitleValue = ''
       this.shareDescValue = ''
-      this.shareUploader = []
+      this.shareUploader = ''
+      this.uploadShareImg = ''
+      // this.activityDateValue = ''
     },
     shareCancelDialog () {
       console.log('分享取消')
@@ -274,13 +339,60 @@ export default {
       console.log(this.goodsPrice)
       console.log(this.goodsContact)
       console.log(this.goodsUploader)
+      switch (this.goodsType) {
+        case '家具':
+          this.goodsType = 'JJ'
+          break
+        case '服饰':
+          this.goodsType = 'FS'
+          break
+        case '餐厨':
+          this.goodsType = 'CC'
+          break
+        case '电器':
+          this.goodsType = 'DQ'
+          break
+        case '电子产品':
+          this.goodsType = 'DZCP'
+          break
+        case '体育用品':
+          this.goodsType = 'TYYP'
+          break
+        case '特产':
+          this.goodsType = 'TC'
+          break
+        case '其他':
+          this.goodsType = 'QT'
+          break
+      }
+      this.$axios.post('api/user/addUserMarketGoods', {
+        type: this.goodsType,
+        title: this.goodsTitleValue,
+        desc: this.goodsDescValue,
+        number: this.goodsQuantity,
+        price: this.goodsPrice,
+        picture: this.uploadGoodsImg,
+        // date: new Date().getMonth() + 1 + '/' + new Date().getDate(),
+        done: '0',
+        userId: localStorage.getItem('id')
+      })
+        .then(res => {
+          console.log(res)
+          // this.activitys = res.data.data
+          // this.$router.push({
+          //   name: 'OrganizingActivity'
+          // })
+          // this.$emit('getList')
+        })
+        .catch(err => {
+          console.log(err)
+        })
       this.goodsType = ''
       this.goodsTitleValue = ''
       this.goodsDescValue = ''
       this.goodsQuantity = ''
       this.goodsPrice = ''
-      this.goodsContact = ''
-      this.goodsUploader = []
+      this.uploadGoodsImg = ''
     },
     goodsCancelDialog () {
       console.log('上架取消')

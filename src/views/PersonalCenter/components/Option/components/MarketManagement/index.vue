@@ -14,20 +14,20 @@
       <div class="market-management-list">
         <ul class="market-management-ul">
           <li class="market-management-li">
-            <van-swipe-cell :before-close="beforeClose">
+            <van-swipe-cell :before-close="beforeClose" :name="item.id" v-for="(item, index) in dataList" :key="index">
               <div class="market-management-swipe">
                 <div class="market-management-swipe-l">
                   <div class="market-management-swipe-l-imgbox">
-                    <img class="market-management-swipe-l-img" src="../../../../../../assets/images/scenery/01.jpg" alt="">
+                    <img class="market-management-swipe-l-img" :src="'http://localhost:3000/public/uploads/' + item.goods_picture" alt="">
                   </div>
                 </div>
                 <div class="market-management-swipe-r">
-                  <span class="market-management-swipe-title">商品标题：小米10pro</span>
-                  <div class="market-management-swipe-desc">描述：好用的小米10手机，自用98新，外表无磕碰，带原装充电器，价格可以小刀。</div>
-                  <div class="market-management-swipe-date">类型：电子产品</div>
-                  <div class="market-management-swipe-date">数量：1</div>
-                  <div class="market-management-swipe-date">价格：￥19.00</div>
-                  <div class="market-management-swipe-date">联系方式：110115313121</div>
+                  <span class="market-management-swipe-title">商品标题：{{item.goods_title}}</span>
+                  <div class="market-management-swipe-desc">描述：{{item.goods_desc}}</div>
+                  <div class="market-management-swipe-date">类型：{{item.goods_type}}</div>
+                  <div class="market-management-swipe-date">数量：{{item.goods_number}}</div>
+                  <div class="market-management-swipe-date">价格：￥{{item.goods_price}}</div>
+                  <div class="market-management-swipe-date">联系方式：{{item.acc_phone}}</div>
                 </div>
               </div>
               <template #right>
@@ -47,13 +47,32 @@ export default {
   name: '',
   data () {
     return {
+      dataList: []
     }
+  },
+  mounted () {
+    this.getList()
   },
   components: {
     TitleTop
   },
   methods: {
-    beforeClose ({ position, instance }) {
+    getList () {
+      this.$axios.post('api/user/searchUserMarketGoods', {
+        userId: localStorage.getItem('id')
+      })
+        .then(res => {
+          console.log(res)
+          this.dataList = res.data.data
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    beforeClose ({ position, instance, name }) {
+      console.log(position)
+      console.log(instance)
+      console.log(name)
       switch (position) {
         case 'left':
         case 'cell':
@@ -66,6 +85,18 @@ export default {
           }).then(() => {
             // instance.close()
             console.log('确定删除')
+            this.$axios.post('api/user/delUserMarketGoods', {
+              id: name
+            })
+              .then(res => {
+                console.log(res)
+                this.$toast.success('删除成功')
+                this.getList()
+              })
+              .catch(err => {
+                console.log(err)
+                this.$toast.fail('删除失败')
+              })
           }).catch(() => {
             console.log('取消删除')
           })
@@ -115,7 +146,7 @@ export default {
   word-break : break-all;
   white-space: normal;
   // font-size: 14px;
-  margin: 4px 2px 4px 2px ;
+  margin: 4px 2px 10px 2px ;
   padding: 2px 8px;
   // border: rgba(240, 160, 11, 0.404) 1px solid;
   box-shadow: 0 0 10px 0 rgba(240, 160, 11, 0.404); /*no*/
@@ -146,10 +177,6 @@ export default {
   font-size: 12px;
   margin-top: 2px;
   // text-align: end;
-}
-.market-management-swipe-l {
-  // width: 200px;
-  // height: 100%;
 }
 .market-management-swipe-l-imgbox {
   margin-top: 12px;

@@ -16,35 +16,35 @@
         <div class="contact-content">
           <ul class="contact-content-ul">
             <li class="contact-content-li">
-              <i class="iconfont icon-shouye icon-i"></i>
-              <b> 物业主管：</b><span>131213231</span>
+              <i class="iconfont icon-lianxi icon-i"></i>
+              <b> 物业主管：</b><span>13251242118</span>
             </li>
             <li class="contact-content-li">
-              <i class="iconfont icon-shouye icon-i"></i>
-              <b> 投诉建议：</b><span>131213231</span>
+              <i class="iconfont icon-lianxi icon-i"></i>
+              <b> 投诉建议：</b><span>86158756</span>
             </li>
             <li class="contact-content-li">
-              <i class="iconfont icon-shouye icon-i"></i>
-              <b> 维修部电话：</b><span>131213231</span>
+              <i class="iconfont icon-lianxi icon-i"></i>
+              <b> 维修部电话：</b><span>86512479</span>
             </li>
             <li class="contact-content-li">
-              <i class="iconfont icon-shouye icon-i"></i>
-              <b> 保安室门卫电话：</b><span>131213231</span>
+              <i class="iconfont icon-lianxi icon-i"></i>
+              <b> 保安室门卫电话：</b><span>86342154</span>
             </li>
             <li class="contact-content-li">
-              <i class="iconfont icon-shouye icon-i"></i>
-              <b> 公司地址：</b><span>广东省佛山市三水区云东海街道大学路07号好运来服务控股有限公司</span>
+              <i class="iconfont icon-dizi icon-i"></i>
+              <b> 公司地址：</b><span>广东省东莞市南城街道西湖乐园07号铺好运来服务有限公司</span>
             </li>
             <li class="contact-content-li">
-              <i class="iconfont icon-shouye icon-i"></i>
-              <b> 全国服务监督热线：</b><span>400-666-6666转1</span>
+              <i class="iconfont icon-dianhua icon-i"></i>
+              <b> 全国服务监督热线：</b><span>400-666-6666 转 1</span>
             </li>
             <li class="contact-content-li">
-              <i class="iconfont icon-shouye icon-i"></i>
+              <i class="iconfont icon-zhongguoyouzheng icon-i"></i>
               <b> 邮编：</b><span>528100</span>
             </li>
             <li class="contact-content-li">
-              <i class="iconfont icon-shouye icon-i"></i>
+              <i class="iconfont icon-wangzhi icon-i"></i>
               <b> 网址：</b><span>http://47.112.167.26/index</span>
             </li>
           </ul>

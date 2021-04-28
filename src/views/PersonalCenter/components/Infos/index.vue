@@ -1,8 +1,8 @@
 <template>
   <div class="infos-container">
     <div class="infos-pic">
-      <img class="infos-pic-image" src="../../../../assets/logo.png" alt="">
-      <!-- <img class="infos-pic-image" src="http://localhost:3000/uploads/file-1773b71093b.jpg" alt=""> -->
+      <img v-if="this.token" class="infos-pic-image" :src="'http://localhost:3000/public/uploads/' + this.pic" alt="">
+      <img v-else class="infos-pic-image" src="../../../../assets/logo.png" alt="">
     </div>
     <div class="info-content">
       <div class="info-content-mid">
@@ -21,6 +21,8 @@ export default {
   name: 'Infos',
   data () {
     return {
+      token: localStorage.getItem('token'),
+      pic: localStorage.getItem('picture'),
       accountNumber: '游客',
       nickName: '游客',
       community: '好运来小区',

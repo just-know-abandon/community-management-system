@@ -5,19 +5,19 @@
       <span>首页</span>
     </router-link>
     <router-link to="/market" class="tabBar-item">
-      <i class="iconfont icon-shouye"></i>
+      <i class="iconfont icon-ershoushebei"></i>
       <span>二手市场</span>
     </router-link>
     <router-link to="/chatRoom" class="tabBar-item">
-      <i class="iconfont icon-shouye"></i>
+      <i class="iconfont icon-liaotian"></i>
       <span>聊天室</span>
     </router-link>
     <router-link to="/share" class="tabBar-item">
-      <i class="iconfont icon-shouye"></i>
+      <i class="iconfont icon-pengyouquan"></i>
       <span>分享墙</span>
     </router-link>
     <router-link to="/personalCenter" class="tabBar-item">
-      <i class="iconfont icon-shouye"></i>
+      <i class="iconfont icon-gerenzhongxin"></i>
       <span>个人</span>
     </router-link>
   </div>

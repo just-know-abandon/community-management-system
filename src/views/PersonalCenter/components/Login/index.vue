@@ -48,7 +48,7 @@ export default {
   methods: {
     onSubmit () {
       console.log('登录')
-      this.$axios.post('http://localhost:3000/api/user/login', {
+      this.$axios.post('api/user/login', {
         account: this.username,
         password: this.password
       })
@@ -63,6 +63,7 @@ export default {
           console.log(res.data.data[0].acc_done)
           const id = res.data.data[0].id
           const account = res.data.data[0].acc_user
+          const picture = res.data.data[0].acc_pic
           const nickname = res.data.data[0].acc_nickname
           const realname = res.data.data[0].acc_realname
           const phone = res.data.data[0].acc_phone
@@ -73,6 +74,7 @@ export default {
             localStorage.setItem('token', token)
             localStorage.setItem('id', id)
             localStorage.setItem('account', account)
+            localStorage.setItem('picture', picture)
             localStorage.setItem('nickname', nickname)
             localStorage.setItem('realname', realname)
             localStorage.setItem('phone', phone)
@@ -83,6 +85,9 @@ export default {
           } else {
             this.$toast.fail('登录失败')
           }
+        })
+        .catch(() => {
+          this.$toast.fail('登录失败')
         })
     }
   }

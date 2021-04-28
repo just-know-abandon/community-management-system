@@ -6,15 +6,15 @@
           <!-- {{item.content}} ---- {{item.type}} -->
           <div class="goods-box-main">
             <div class="goods-box-main-imgbox">
-              <img class="goods-box-main-img" :src="item.goods_picture" alt="">
+              <img class="goods-box-main-img" :src="'http://localhost:3000/public/uploads/' + item.goods_picture" alt="">
             </div>
             <div class="goods-box-main-content">
               <span class="goods-box-main-content-title">商品标题：{{item.goods_title}}</span>
-                  <div class="goods-box-main-content-desc">描述：{{item.goods_desc}}</div>
-                  <!-- <div class="goods-box-main-content-date">类型：{{goodsType}}</div> -->
-                  <div class="goods-box-main-content-date">数量：{{item.goods_number}}</div>
-                  <div class="goods-box-main-content-date">价格：￥{{item.goods_price}}</div>
-                  <div class="goods-box-main-content-date">联系方式：{{item.acc_phone}}</div>
+                <div class="goods-box-main-content-desc">描述：{{item.goods_desc}}</div>
+                <!-- <div class="goods-box-main-content-date">类型：{{goodsType}}</div> -->
+                <div class="goods-box-main-content-date">数量：{{item.goods_number}}</div>
+                <div class="goods-box-main-content-date">价格：￥{{item.goods_price}}</div>
+                <div class="goods-box-main-content-date">联系方式：{{item.acc_phone}}</div>
             </div>
           </div>
         </li>
@@ -154,7 +154,7 @@ export default {
   min-width: 100px;
   font-size: 20px;
 }
-.a,.b,.c,.d,.e,.f,.g,.h{
+.JJ,.FS,.CC,.DQ,.DZCP,.TYYP,.TC,.QT{
   /* height: 100px; */
   position: absolute;
   left: 0; /*no*/

@@ -99,6 +99,27 @@ export default {
   methods: {
     onSubmit (values) {
       console.log('submit', values)
+      this.$axios.post('api/user/addUserLost', {
+        name: values.loss,
+        desc: values.lossDesc,
+        place: values.lossPlace,
+        date: values.lossDate + '-' + values.lossTime,
+        done: '0',
+        userId: localStorage.getItem('id')
+      })
+        .then(res => {
+          console.log(res)
+          this.$toast.success('报失成功')
+          this.loss = ''
+          this.lossDesc = ''
+          this.lossPlace = ''
+          this.lossTime = ''
+          this.lossDate = ''
+        })
+        .catch(err => {
+          console.log(err)
+          this.$toast.fail('报失失败')
+        })
     },
     lossTimeonConfirm (time) {
       this.lossTime = time

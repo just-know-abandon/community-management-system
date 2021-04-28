@@ -73,6 +73,24 @@ export default {
   methods: {
     onSubmit (values) {
       console.log('submit', values)
+      this.$axios.post('api/user/addUserRepair', {
+        name: values.repair,
+        extent: values.extent,
+        place: values.place,
+        done: '0',
+        userId: localStorage.getItem('id')
+      })
+        .then(res => {
+          console.log(res)
+          this.$toast.success('报修成功')
+          this.repair = ''
+          this.extent = ''
+          this.repairDesc = ''
+        })
+        .catch(err => {
+          console.log(err)
+          this.$toast.fail('报修失败')
+        })
     },
     onConfirm (value) {
       this.extent = value

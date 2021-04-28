@@ -53,17 +53,54 @@ export default {
     TitleTop
   },
   created () {
-    this.getList(0, 5)
+    this.getList()
     this.getListTotle()
   },
   methods: {
-    onSearch (val) {
-      console.log(val)
+    search () {
+      this.$axios.post('api/admin/searchActivity', {
+        limitF: (this.currentPage - 1) * 5,
+        limitS: 5,
+        title: this.value
+      })
+        .then(res => {
+          console.log(res.data.data)
+          this.activitys = res.data.data
+        })
+        .catch(err => {
+          console.log(err)
+        })
     },
-    getList (limitF, limitS) {
-      this.$axios.post('http://localhost:3000/api/admin/searchActivity', {
-        limitF,
-        limitS
+    searchTotal (val) {
+      this.$axios.post('api/admin/searchActivity', {
+        title: this.value
+      })
+        .then(res => {
+          console.log(res.data.data)
+          this.activitysTotle = res.data.data.length
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    onSearch (val) {
+      this.currentPage = 1
+      this.value = val
+      console.log(this.value)
+      if (this.value === '') {
+        this.getList()
+        this.getListTotle()
+        console.log(this.activitysTotle)
+      } else {
+        this.search()
+        this.searchTotal(this.value)
+        console.log(this.activitysTotle)
+      }
+    },
+    getList () {
+      this.$axios.post('api/admin/searchActivity', {
+        limitF: (this.currentPage - 1) * 5,
+        limitS: 5
       })
         .then(res => {
           console.log(res.data.data)
@@ -74,7 +111,7 @@ export default {
         })
     },
     getListTotle () {
-      this.$axios.post('http://localhost:3000/api/admin/searchActivity')
+      this.$axios.post('api/admin/searchActivity')
         .then(res => {
           this.activitysTotle = res.data.data.length
           console.log(res.data.data.length)
@@ -85,8 +122,11 @@ export default {
     },
     pagechange () {
       console.log(this.currentPage)
-      const curpagechange = this.currentPage - 1
-      this.getList(curpagechange * 5, 5)
+      if (this.value !== '') {
+        this.search()
+      } else {
+        this.getList()
+      }
     }
   }
 }

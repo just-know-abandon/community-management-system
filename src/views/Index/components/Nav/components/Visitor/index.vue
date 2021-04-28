@@ -32,13 +32,13 @@
             </van-radio-group>
           </template>
         </van-field>
-        <van-field
+        <!-- <van-field
           v-model="number"
           name="number"
           label="人数"
           placeholder="访客人数"
           :rules="[{ required: true, message: '请填写访客人数' }]"
-        />
+        /> -->
         <van-field
           v-model="phone"
           name="phone"
@@ -72,7 +72,7 @@ export default {
   data () {
     return {
       username: '',
-      number: '',
+      // number: '',
       sex: '1',
       stayTime: '1',
       phone: '',
@@ -86,6 +86,28 @@ export default {
   methods: {
     onSubmit (values) {
       console.log('submit', values)
+      this.$axios.post('api/user/addUserVisitor', {
+        name: values.name,
+        sex: values.sex,
+        phone: values.phone,
+        stayTime: values.stayTime,
+        date: values.stayDate,
+        done: '0',
+        userId: localStorage.getItem('id')
+      })
+        .then(res => {
+          console.log(res)
+          this.$toast.success('添加访客成功')
+          this.username = ''
+          this.sex = ''
+          this.stayTime = ''
+          this.phone = ''
+          this.stayDate = ''
+        })
+        .catch(err => {
+          console.log(err)
+          this.$toast.fail('添加访客失败')
+        })
     },
     onConfirm (date) {
       this.stayDate = `${date.getMonth() + 1}/${date.getDate()}`

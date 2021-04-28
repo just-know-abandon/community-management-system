@@ -271,49 +271,49 @@ export default {
           id: 1,
           name: '1',
           title: '家具',
-          type: 'a'
+          type: 'JJ'
         },
         {
           id: 2,
           name: '2',
           title: '服饰',
-          type: 'b'
+          type: 'FS'
         },
         {
           id: 3,
           name: '3',
           title: '餐厨',
-          type: 'c'
+          type: 'CC'
         },
         {
           id: 4,
           name: '4',
           title: '电器',
-          type: 'd'
+          type: 'DQ'
         },
         {
           id: 5,
           name: '5',
           title: '电子产品',
-          type: 'e'
+          type: 'DZCP'
         },
         {
           id: 6,
           name: '6',
           title: '体育用品',
-          type: 'f'
+          type: 'TYYP'
         },
         {
           id: 7,
           name: '7',
           title: '特产',
-          type: 'g'
+          type: 'TC'
         },
         {
           id: 8,
           name: '8',
           title: '其他',
-          type: 'h'
+          type: 'QT'
         }
       ]
     }

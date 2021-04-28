@@ -11,6 +11,7 @@
         </li>
       </ul>
     </div>
+    <div class="more" v-if="isShareTotle" @click="getList">更多</div>
   </div>
 </template>
 
@@ -19,6 +20,9 @@ export default {
   name: 'News',
   data () {
     return {
+      isShareTotle: 0,
+      limitF: 0,
+      limitS: 8,
       offwidtha: '',
       newsNotice: [],
       mock: [
@@ -102,15 +106,21 @@ export default {
       // 将数组中最大的值，即最高的那一列的高度赋给外层盒子
       this.$refs.rbox.style.height = Math.max.apply(null, heightArr) + 'px'
     },
-    getList (limitF, limitS) {
+    getList () {
       this.$axios.post('http://localhost:3000/api/admin/searchNotice', {
-        limitF,
-        limitS
+        limitF: this.limitF,
+        limitS: this.limitS
       })
         .then(res => {
           console.log(res.data.data)
           this.newsNotice = res.data.data
-          console.log(this.newsNotice)
+          this.limitS = this.limitS + 8
+          console.log(this.newsNotice.length)
+          if (this.newsNotice.length % 8 !== 0) {
+            this.isShareTotle = 0
+          } else {
+            this.isShareTotle = 1
+          }
         })
         .catch(err => {
           console.log(err)
@@ -118,8 +128,7 @@ export default {
     }
   },
   created () {
-    console.log(123123123123)
-    this.getList(0, 6)
+    this.getList()
   },
   watch: {
     offwidtha (newvalue, oldvalue) {
@@ -209,6 +218,7 @@ export default {
   font-size: 14px;
   margin-top: 2px;
   color: rgb(117, 106, 106);
+  word-wrap: break-word;
 }
 .news-main-li-content-date{
   width: 100%;
@@ -217,5 +227,17 @@ export default {
   margin-top: 2px;
   color: rgb(117, 106, 106);
   text-align: end;
+}
+.more{
+  margin: 0 auto;
+  margin-bottom: 20px;
+  width: 80px;
+  height: 40px;
+  background-color: rgb(240, 160, 11);
+  border-radius: 20px;
+  font-size: 20px;
+  color: #eee;
+  text-align: center;
+  line-height: 40px;
 }
 </style>

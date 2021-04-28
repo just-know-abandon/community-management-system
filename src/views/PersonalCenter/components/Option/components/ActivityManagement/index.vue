@@ -14,14 +14,14 @@
       <div class="activity-management-list">
         <ul class="activity-management-ul">
           <li class="activity-management-li">
-            <van-swipe-cell :before-close="beforeClose">
+            <van-swipe-cell :before-close="beforeClose" :name="item.id" v-for="(item, index) in dataList" :key="index">
               <!-- <div class="swipe-contnet">组织活动列表</div> -->
               <div class="activity-management-swipe">
-                <span class="activity-management-swipe-title">今晚骑单车</span>
-                <div class="activity-management-swipe-desc">今晚骑单车今晚骑单车今晚骑单车</div>
-                <div class="activity-management-swipe-date">地点：北门</div>
-                <div class="activity-management-swipe-date">时间：19：00</div>
-                <div class="activity-management-swipe-date">日期：2020 / 1 / 18</div>
+                <span class="activity-management-swipe-title">{{item.activity_title}}</span>
+                <div class="activity-management-swipe-desc">{{item.activity_content}}</div>
+                <div class="activity-management-swipe-date">地点：{{item.activity_place}}</div>
+                <div class="activity-management-swipe-date">时间：{{item.activity_date.split('-')[1]}}</div>
+                <div class="activity-management-swipe-date">日期：{{item.activity_date.split('-')[0]}}</div>
               </div>
               <template #right>
                 <van-button square text="删除" type="danger" class="delete-button" />
@@ -37,16 +37,35 @@
 <script>
 import TitleTop from '../../../../../../components/TitleTop/index'
 export default {
-  name: '',
   data () {
     return {
+      dataList: [],
+      name: ''
     }
+  },
+  mounted () {
+    this.getList()
   },
   components: {
     TitleTop
   },
   methods: {
-    beforeClose ({ position, instance }) {
+    getList () {
+      this.$axios.post('api/user/searchUserActivity', {
+        userId: localStorage.getItem('id')
+      })
+        .then(res => {
+          console.log(res)
+          this.dataList = res.data.data
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    },
+    beforeClose ({ position, instance, name }) {
+      console.log(position)
+      console.log(instance)
+      console.log(name)
       switch (position) {
         case 'left':
         case 'cell':
@@ -59,6 +78,18 @@ export default {
           }).then(() => {
             // instance.close()
             console.log('确定删除')
+            this.$axios.post('api/user/delUserActivity', {
+              id: name
+            })
+              .then(res => {
+                console.log(res)
+                this.$toast.success('删除成功')
+                this.getList()
+              })
+              .catch(err => {
+                console.log(err)
+                this.$toast.fail('删除失败')
+              })
           }).catch(() => {
             console.log('取消删除')
           })
@@ -107,7 +138,7 @@ export default {
   word-break : break-all;
   white-space: normal;
   // font-size: 14px;
-  margin: 4px 2px 4px 2px ;
+  margin: 4px 2px 10px 2px ;
   padding: 2px 8px;
   // border: rgba(240, 160, 11, 0.404) 1px solid;
   box-shadow: 0 0 10px 0 rgba(240, 160, 11, 0.404); /*no*/

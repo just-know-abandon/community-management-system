@@ -8,8 +8,8 @@
       <span class="titleRight" slot="ze" v-if="!token">
         <router-link class="login" to="/personalCenter/login">登录</router-link>
       </span>
-      <span class="titleRight" slot="ze" v-if="token" @click="out">
-        <router-link v-if="token" class="login" to="/index">退出</router-link>
+      <span class="titleRight" slot="ze">
+        <!-- <router-link v-if="token" class="login" to="/index">退出</router-link> -->
       </span>
     </TitleTop>
     <div class="personal-top"></div>
@@ -35,16 +35,16 @@ export default {
     Option
   },
   methods: {
-    out () {
-      localStorage.removeItem('token')
-      localStorage.removeItem('id')
-      localStorage.removeItem('account')
-      localStorage.removeItem('nickname')
-      localStorage.removeItem('realname')
-      localStorage.removeItem('phone')
-      localStorage.removeItem('done')
-      this.$toast.success('退出登录')
-    }
+    // out () {
+    //   localStorage.removeItem('token')
+    //   localStorage.removeItem('id')
+    //   localStorage.removeItem('account')
+    //   localStorage.removeItem('nickname')
+    //   localStorage.removeItem('realname')
+    //   localStorage.removeItem('phone')
+    //   localStorage.removeItem('done')
+    //   this.$toast.success('退出登录')
+    // }
   }
 }
 </script>

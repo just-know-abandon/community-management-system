@@ -2,30 +2,31 @@
   <div class="share-container">
     <div ref="rbox" class="share-main">
       <ul class="share-main-ul" ref="shareul">
-        <li class="share-main-li" ref="shareli" v-for="(item, index) in mock" :key="index">
+        <li class="share-main-li" ref="shareli" v-for="(item, index) in shareList" :key="index">
           <div class="share-main-li-content">
             <div class="share-box-main-imgbox">
-              <img class="share-box-main-img" src="../../../../assets/images/scenery/01.jpg" alt="">
+              <img class="share-box-main-img" :src="'http://localhost:3000/public/uploads/' + item.share_picture" alt="">
             </div>
             <div class="share-box-main-content">
-              <span class="share-main-li-content-title">{{item.title}}</span>
-              <p class="share-main-li-content-desc">{{item.desc}}</p>
+              <span class="share-main-li-content-title">{{item.share_title}}</span>
+              <p class="share-main-li-content-desc">{{item.share_desc}}</p>
               <!-- <p class="share-main-li-content-date">{{item.date}}</p> -->
               <div class="share-main-li-content-user">
                 <span class="share-main-li-content-user-desc">
-                  <img class="share-main-li-content-user-desc-img" src="../../../../assets/images/scenery/01.jpg" alt="">
-                  <span class="share-main-li-content-user-desc-name">敏哥</span>
+                  <img class="share-main-li-content-user-desc-img" :src="'http://localhost:3000/public/uploads/' + item.share_user_pic" alt="">
+                  <span class="share-main-li-content-user-desc-name">{{item.acc_nickname}}</span>
                 </span>
-                <span class="share-main-li-content-user-like">
+                <!-- <span class="share-main-li-content-user-like">
                   <i class="iconfont icon-shouye"></i>
                   <span>1</span>
-                </span>
+                </span> -->
               </div>
             </div>
           </div>
         </li>
       </ul>
     </div>
+    <div class="more" v-if="isShareTotle" @click="getShareList">更多</div>
   </div>
 </template>
 
@@ -34,44 +35,49 @@ export default {
   name: 'share',
   data () {
     return {
+      pic: localStorage.getItem('picture'),
       offwidtha: '',
-      mock: [
-        {
-          id: 0,
-          title: '今晚吃饭',
-          desc: '今晚记得来吃饭啊，北门见',
-          content: '今晚吃饭今晚吃饭今晚吃饭今晚吃饭今晚吃饭今晚吃饭今晚吃饭',
-          date: '2020-1-18'
-        },
-        {
-          id: 1,
-          title: '今晚宵夜',
-          desc: '今晚记得来宵夜啊，北门见今晚记得来宵夜啊，北门见今晚记得来宵夜啊，北门见今晚记得来宵夜啊，北门见',
-          content: '今晚宵夜今晚宵夜今晚宵夜',
-          date: '2020-1-18'
-        },
-        {
-          id: 2,
-          title: '今晚宵夜',
-          desc: '今晚记得来宵夜啊，北门见今晚记得来宵夜啊，北门见今晚记得来宵夜啊，北门见今晚记得来宵夜啊，北门见',
-          content: '今晚宵夜今晚宵夜今晚宵夜',
-          date: '2020-1-18'
-        },
-        {
-          id: 3,
-          title: '今晚宵夜',
-          desc: '今晚记得来宵夜啊，北门见今晚记得来宵夜啊，北门见今晚记得来宵夜啊，北门见',
-          content: '今晚宵夜今晚宵夜今晚宵夜',
-          date: '2020-1-18'
-        },
-        {
-          id: 3,
-          title: '今晚宵夜',
-          desc: '今晚记得来宵夜啊',
-          content: '今晚宵夜今晚宵夜今晚宵夜',
-          date: '2020-1-18'
-        }
-      ]
+      shareList: '',
+      limitF: 0,
+      limitS: 6,
+      isShareTotle: 0
+      // mock: [
+      //   {
+      //     id: 0,
+      //     title: '今晚吃饭',
+      //     desc: '今晚记得来吃饭啊，北门见',
+      //     content: '今晚吃饭今晚吃饭今晚吃饭今晚吃饭今晚吃饭今晚吃饭今晚吃饭',
+      //     date: '2020-1-18'
+      //   },
+      //   {
+      //     id: 1,
+      //     title: '今晚宵夜',
+      //     desc: '今晚记得来宵夜啊，北门见今晚记得来宵夜啊，北门见今晚记得来宵夜啊，北门见今晚记得来宵夜啊，北门见',
+      //     content: '今晚宵夜今晚宵夜今晚宵夜',
+      //     date: '2020-1-18'
+      //   },
+      //   {
+      //     id: 2,
+      //     title: '今晚宵夜',
+      //     desc: '今晚记得来宵夜啊，北门见今晚记得来宵夜啊，北门见今晚记得来宵夜啊，北门见今晚记得来宵夜啊，北门见',
+      //     content: '今晚宵夜今晚宵夜今晚宵夜',
+      //     date: '2020-1-18'
+      //   },
+      //   {
+      //     id: 3,
+      //     title: '今晚宵夜',
+      //     desc: '今晚记得来宵夜啊，北门见今晚记得来宵夜啊，北门见今晚记得来宵夜啊，北门见',
+      //     content: '今晚宵夜今晚宵夜今晚宵夜',
+      //     date: '2020-1-18'
+      //   },
+      //   {
+      //     id: 3,
+      //     title: '今晚宵夜',
+      //     desc: '今晚记得来宵夜啊',
+      //     content: '今晚宵夜今晚宵夜今晚宵夜',
+      //     date: '2020-1-18'
+      //   }
+      // ]
     }
   },
   methods: {
@@ -109,15 +115,44 @@ export default {
       console.log(item)
       // 将数组中最大的值，即最高的那一列的高度赋给外层盒子
       this.$refs.rbox.style.height = Math.max.apply(null, heightArr) + 'px'
+    },
+    getShareList () {
+      this.$axios.post('api/user/searchUserShare', {
+        limitF: this.limitF,
+        limitS: this.limitS
+      })
+        .then(res => {
+          console.log(res.data.data)
+          this.shareList = res.data.data
+          this.limitS = this.limitS + 6
+          console.log(this.shareList.length)
+          if (this.shareList.length % 6 !== 0) {
+            this.isShareTotle = 0
+          } else {
+            this.isShareTotle = 1
+          }
+        })
+        .catch(err => {
+          console.log(err)
+        })
     }
   },
   created () {
+    this.getShareList()
   },
   watch: {
     offwidtha (newvalue, oldvalue) {
       console.log(newvalue, oldvalue)
       this.a()
     }
+  },
+  updated () {
+    this.a()
+    console.log(1)
+    // this.a()
+    console.log(2)
+    // console.log(this.$refs.rbox.offsetWidth)
+    // console.log(this.$refs.ritem.offsetWidth)
   },
   mounted () {
     this.a()
@@ -192,6 +227,11 @@ export default {
   font-size: 14px;
   margin-top: 2px;
   color: rgb(117, 106, 106);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  word-break: break-all;
 }
 .share-main-li-content-date{
   width: 100%;
@@ -225,18 +265,22 @@ export default {
 .share-main-li-content-user-desc{
   display: block;
   position: relative;
-  width: 100px;
+  width: 120px;
   height: 20px;
   line-height: 20px;
   font-size: 12px;
 }
 .share-main-li-content-user-desc-name{
   display: inline-block;
+  width: 100px;
   line-height: 20px;
   height: 20px;
   position: absolute;
   top: 2px;
   left: 24px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .share-main-li-content-user-desc-img{
   width: 20px;
@@ -245,5 +289,17 @@ export default {
 }
 .share-main-li-content-user-like{
   font-size: 12px;
+}
+.more{
+  margin: 0 auto;
+  margin-bottom: 20px;
+  width: 80px;
+  height: 40px;
+  background-color: rgb(240, 160, 11);
+  border-radius: 20px;
+  font-size: 20px;
+  color: #eee;
+  text-align: center;
+  line-height: 40px;
 }
 </style>

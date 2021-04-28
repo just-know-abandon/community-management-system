@@ -13,6 +13,9 @@ import './assets/css/global.css'
 import './assets/fonts/iconfont.css'
 // vuescroll
 import vuescroll from 'vuescroll'
+// socketio
+import VueSocketIO from 'vue-socket.io'
+import SocketIO from 'socket.io-client'
 
 // vant按需引入
 import 'vant/lib/index.css'
@@ -73,8 +76,29 @@ FastClick.attach(document.body)
 
 // 全局注册axios
 Vue.prototype.$axios = axios
+axios.defaults.baseURL = 'http://localhost:3000/'
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
 
 Vue.config.productionTip = false
+
+// Vue.use(new VueSocketIO({
+//   debug: false,
+//   connection: 'http://localhost:3000/'
+// }))
+
+// Vue.use(new VueSocketIO({
+//   debug: true,
+//   connection: SocketIO('{http://localhost:3000/}')
+// })
+// )
+
+Vue.use(new VueSocketIO({
+  debug: true,
+  connection: SocketIO.connect('http://localhost:3000', {
+    transports: ['websocket']
+    // autoConnect: false
+  })
+}))
 
 new Vue({
   router,

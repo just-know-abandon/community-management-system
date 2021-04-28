@@ -21,52 +21,52 @@ export default {
       navItems: [
         {
           linkUrl: '/index/notice',
-          picUrl: 'iconfont icon-shouye',
+          picUrl: 'iconfont icon-tongzhi',
           text: '通知公告'
         },
         {
           linkUrl: '/index/communityActivity',
-          picUrl: 'iconfont icon-shouye',
+          picUrl: 'iconfont icon-huodong',
           text: '小区活动'
         },
         {
           linkUrl: '/index/organizingActivity',
-          picUrl: 'iconfont icon-shouye',
+          picUrl: 'iconfont icon-huodong1',
           text: '组织活动'
         },
         {
           linkUrl: '/index/services',
-          picUrl: 'iconfont icon-shouye',
+          picUrl: 'iconfont icon-fuwu',
           text: '物业服务'
         },
         {
           linkUrl: '/index/communityScenery',
-          picUrl: 'iconfont icon-shouye',
+          picUrl: 'iconfont icon-huanjing',
           text: '小区风光'
         },
         {
           linkUrl: '/index/visitor',
-          picUrl: 'iconfont icon-shouye',
+          picUrl: 'iconfont icon-peizhitubiaosvg-',
           text: '访客通报'
         },
         {
           linkUrl: '/index/reportRepair',
-          picUrl: 'iconfont icon-shouye',
+          picUrl: 'iconfont icon-weixiu',
           text: '损坏报修'
         },
         {
           linkUrl: '/index/reportLoss',
-          picUrl: 'iconfont icon-shouye',
+          picUrl: 'iconfont icon-dibudaohanglan-',
           text: '失物报备'
         },
         {
           linkUrl: '/index/complaint',
-          picUrl: 'iconfont icon-shouye',
+          picUrl: 'iconfont icon-tousu',
           text: '投诉建议'
         },
         {
           linkUrl: '/index/contact',
-          picUrl: 'iconfont icon-shouye',
+          picUrl: 'iconfont icon-lianxi',
           text: '联系我们'
         }
       ]

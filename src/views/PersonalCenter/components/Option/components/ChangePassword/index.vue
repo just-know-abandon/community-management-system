@@ -59,6 +59,23 @@ export default {
       console.log('submit', values)
       if (this.oldPassword === this.newPassword) {
         this.$toast.fail('新旧密码一致')
+      } else {
+        this.$axios.post('api/user/updateUserAccount', {
+          id: this.id,
+          account: this.accountNumber,
+          password: this.newPassword
+        })
+          .then(res => {
+            console.log(res)
+            this.$toast.success('修改密码成功')
+            this.$router.push({
+              name: 'PersonalCenter'
+            })
+          })
+          .catch(err => {
+            console.log(err)
+            this.$toast.fail('修改密码失败')
+          })
       }
     }
   }

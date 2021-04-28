@@ -65,6 +65,23 @@ export default {
   methods: {
     onSubmit (values) {
       console.log('submit', values)
+      this.$axios.post('api/user/addUserComplaint', {
+        direction: values.complaintDirection,
+        desc: values.complaintDesc,
+        date: new Date().getMonth() + 1 + '/' + new Date().getDate(),
+        done: '0',
+        userId: localStorage.getItem('id')
+      })
+        .then(res => {
+          console.log(res)
+          this.$toast.success('投诉建议成功')
+          this.complaintDirection = ''
+          this.complaintDesc = ''
+        })
+        .catch(err => {
+          console.log(err)
+          this.$toast.fail('投诉建议失败')
+        })
     },
     onConfirm (value) {
       this.complaintDirection = value

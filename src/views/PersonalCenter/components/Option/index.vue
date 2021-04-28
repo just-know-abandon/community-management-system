@@ -9,8 +9,8 @@
       </div>
     </div>
     <div class="out">
-      <div class="out-btn">
-        退出
+      <div class="out-btn" v-if="token" @click="out">
+        <div class="login">退出</div>
       </div>
     </div>
   </div>
@@ -21,10 +21,11 @@ export default {
   name: 'Option',
   data () {
     return {
+      token: localStorage.getItem('token'),
       OptionsList: [
         {
           to: '/personalCenter/changePersonal',
-          i: 'iconfont icon-shouye',
+          i: 'iconfont icon-gerenxinxi',
           title: '账号信息'
         },
         // {
@@ -34,25 +35,41 @@ export default {
         // },
         {
           to: '/personalCenter/activityManagement',
-          i: 'iconfont icon-shouye',
+          i: 'iconfont icon-guanli',
           title: '组织活动管理'
         },
         {
           to: '/personalCenter/marketManagement',
-          i: 'iconfont icon-shouye',
+          i: 'iconfont icon-guanli',
           title: '二手市场管理'
         },
         {
           to: '/personalCenter/shareManagement',
-          i: 'iconfont icon-shouye',
+          i: 'iconfont icon-guanli',
           title: '分享墙管理'
-        },
-        {
-          to: '/personalCenter/changePassword',
-          i: 'iconfont icon-shouye',
-          title: '修改密码'
         }
+        // {
+        //   to: '/personalCenter/changePassword',
+        //   i: 'iconfont icon-shouye',
+        //   title: '修改密码'
+        // }
       ]
+    }
+  },
+  methods: {
+    out () {
+      localStorage.removeItem('token')
+      localStorage.removeItem('id')
+      localStorage.removeItem('account')
+      localStorage.removeItem('picture')
+      localStorage.removeItem('nickname')
+      localStorage.removeItem('realname')
+      localStorage.removeItem('phone')
+      localStorage.removeItem('done')
+      this.$toast.success('退出登录')
+      this.$router.push({
+        name: 'Index'
+      })
     }
   }
 }
@@ -110,5 +127,8 @@ export default {
   font-size: 16px;
   text-align: center;
   line-height: 30px;
+  .login {
+    color: #eee;
+  }
 }
 </style>
